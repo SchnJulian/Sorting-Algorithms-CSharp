@@ -238,36 +238,48 @@ namespace SortingAlgorithms {
             return A;
         }
 
-
+        /* 
+        * Introsort
+        * best-case:       O(n*log(n))
+        * average-case:    O(n*log(n))
+        * worst-case:      O(n*log(n))
+        */
         public static List<T> IntroSort<T>(List<T> A) where T : IComparable {
-            int maxdepth = (int)Math.Floor((decimal)(Math.Log10(A.Count)) * 2);
-            return IntroSortCore(A, maxdepth);
-        }
-        public static List<T> IntroSortCore<T>(List<T> A, int depthLimit) where T : IComparable{
 
             int n = A.Count;
-            int p = Partition(A, 0, A.Count - 2);
-            if(n <= 1) {
-                return A;
-            }else if ( depthLimit == 0) {
-                HeapSort(A);
+            int p = Partition(A, 0, A.Count - 1);
+            //  Use Insertionsort for small lists
+            if (p < 16) {
+                A = InsertionSort(A);
+            }else if (p > (2 * Math.Log(A.Count))) {
+                A = HeapSort(A);
             } else {
-                var left = new List<T>();
-                var right = new List<T>();
-
-                for(int i = 0;i <= p; i++) {
-                    left.Add(A[i]);
-                }
-                for (int i = p+1; i < n; i++) {
-                    right.Add(A[i]);
-                }
-                left = IntroSortCore(left, depthLimit - 1);
-                right = IntroSortCore(right, depthLimit - 1);
-                return Merge(left, right);
+                A = QuickSort(A, 0, A.Count - 1);
             }
             return A;
         }
 
+        /* 
+        * Mergesort
+        * best-case:       O(n*log(n))
+        * average-case:    O(n*log(n))
+        * worst-case:      O(n*log(n))
+        */
+        public static List<T> HeapSort<T>(List<T> A) where T : IComparable {
+            int n = A.Count;
+
+            // Build heap (rearrange array) 
+            for (int i = n / 2 - 1; i >= 0; i--)
+                Heapify(A, n, i);
+
+            for (int i = n - 1; i >= 0; i--) {
+                Swap(A, 0, i);
+
+                // call max heapify on the reduced heap 
+                A = Heapify(A, i, 0);
+            }
+            return A;
+        }
 
         public static List<T> Heapify<T>(List<T> A, int n, int i) where T : IComparable {
             int largest = i; // Initialize largest as root 
@@ -288,22 +300,6 @@ namespace SortingAlgorithms {
 
                 // Recursively heapify the affected sub-tree 
                 A = Heapify(A, n, largest);
-            }
-            return A;
-        }
-
-        public static List<T> HeapSort<T>(List<T> A) where T : IComparable {
-            int n = A.Count;
-
-            // Build heap (rearrange array) 
-            for (int i = n / 2 - 1; i >= 0; i--)
-                Heapify(A, n, i);
-
-            for (int i = n - 1; i >= 0; i--) {
-                Swap(A, 0, i);
-
-                // call max heapify on the reduced heap 
-                A = Heapify(A, i, 0);
             }
             return A;
         }
