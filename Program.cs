@@ -4,13 +4,13 @@ namespace SortingAlgorithms {
     class MainClass {
         public static void Main(string[] args) {
             Random random = new Random();
-            Console.WriteLine("IntroSort:");
+            Console.WriteLine("CountingSort:");
             for (int i = 0; i < 11; i++) {
                 List<int> x = new List<int>();
                 for (int j = 0; j < 22; j++) {
                     x.Add(random.Next(1, 100));
                 }
-                printList(Sort.IntroSort(x));
+                printList(Sort.CountingSort(x));
             }
         
 

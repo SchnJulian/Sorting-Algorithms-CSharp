@@ -251,7 +251,7 @@ namespace SortingAlgorithms {
             //  Use Insertionsort for small lists
             if (p < 16) {
                 A = InsertionSort(A);
-            }else if (p > (2 * Math.Log(A.Count))) {
+            } else if (p > (2 * Math.Log(A.Count))) {
                 A = HeapSort(A);
             } else {
                 A = QuickSort(A, 0, A.Count - 1);
@@ -303,6 +303,42 @@ namespace SortingAlgorithms {
             }
             return A;
         }
+        //public static List<T> CountingSort<T>(List<T> A) where T : IComparable {
+        //    int n = A.Count-1;
 
+        //    //  Output list with sorted elements
+        //    var R = new List<T>();
+
+        //    //  Define counting array to store the occurences of every element
+        //    var count = new List<T>();
+
+        //    T max = A[0];
+        //    T min = A[0];
+        //    for (int i = 0; i < A.Count; i++) {
+        //        if (A[i].CompareTo(max) > 0) {
+        //            max = A[i];
+        //        } else if (A[i].CompareTo(max) < 0) {
+        //            min = A[i];
+        //        }
+        //    }
+
+
+        //    for (int i = 0; i < A.Count; i++) {
+        //        if (i < count.Count) {
+        //            count[(dynamic)A[i] - min]++;
+        //        }
+        //    }
+
+        //    count[0] = (dynamic)count[0] - 1;
+        //    for (int i = 1; i < count.Count; i++) {
+        //        count[i] = (dynamic)count[i] + count[i - 1];
+        //    }
+
+        //    for (int i = A.Count - 1; i >= 0; i--) {
+        //        R[count[(dynamic)A[i] - min]--] = A[i];
+        //    }
+
+        //    return R;
+        //}
     }
 }
