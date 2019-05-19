@@ -303,6 +303,7 @@ namespace SortingAlgorithms {
             }
             return A;
         }
+
         //public static List<T> CountingSort<T>(List<T> A) where T : IComparable {
         //    int n = A.Count-1;
 
@@ -340,5 +341,41 @@ namespace SortingAlgorithms {
 
         //    return R;
         //}
+
+
+
+        /*
+        * Bucketsort
+        * best-case:       O(n)
+        * average-case:    O(n+k)
+        * worst-case:      O(n*log(n))
+        */
+        public static List<T> BucketSort<T>(List<T> A) where T : IComparable{
+            int n = A.Count;
+
+            //  Initialize buckets
+            var bucket = new List<List<T>>();
+
+            //  Distribute values on the buckets 
+            for (int i = 0; i < n; i++) {
+                int bi = (dynamic)n * A[i];
+                bucket[bi].Add(A[i]);
+            }
+
+            //  Sorting every bucket using mergeSort
+            for (int i = 0; i < n; i++) {
+                bucket[i] = MergeSort(bucket[i]); 
+            }
+
+            A.Clear();
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < bucket[i].Count; j++) {
+                    A.Add(bucket[i][j]);
+                }
+            }
+            return A;
+        }
+
+
     }
 }
