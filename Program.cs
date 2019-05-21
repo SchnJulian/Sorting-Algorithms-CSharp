@@ -10,7 +10,7 @@ namespace SortingAlgorithms {
                 for (int j = 0; j < 22; j++) {
                     x.Add(random.Next(1, 100));
                 }
-                printList(Sort.CountingSort(x));
+                printList(Sort.QuickSort(x, 0, x.Count-1));
             }
         
 
