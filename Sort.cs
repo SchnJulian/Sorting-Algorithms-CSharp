@@ -68,29 +68,24 @@ namespace SortingAlgorithms {
             return m;
         }
 
-        //public static List<Tuple<int, int, int>> RadixSort(List<Tuple<int,int,int>> A, int r) {
-        //    int n = A.Count;
-        //    List<Tuple<int, int, int>> bucket = new List<Tuple<int, int, int>>();
-        //    for (int i = 0; i < r; i++) {
-        //        for (int j = n - 1; j >= 0; j--) {
-        //            switch (i) {
-        //                case 1
+        //public static List<T> RadixSort<T>(List<T> A, int r) where T : ICloneable{
 
-        //                default:
-        //                    break;
-        //            }
-        //            bucket.Insert(A[j].Item1, A[j]);
+        //    int i, j;
+        //    var tmp = new List<T>();
+        //    for (int shift = 31; shift > -1; --shift) {
+        //        j = 0;
+        //        for (i = 0; i < A.Count; ++i) {
+        //            bool move = (A[i] << (dynamic)shift) >= 0;
+        //            if (shift == 0 ? !move : move)
+        //                A[i - j] = A[i];
+        //            else
+        //                tmp[j++] = A[i];
         //        }
-        //        A.Clear();
+        //        tmp.CopyTo( new  )
+                
 
-        //        for (int j = 0; j < r; j++) {
-
-        //            A.Add(A[j].bucket[j]ToValueTuple<int, int, int>()
-        //        }
         //    }
-        //    return A;
         //}
-
 
         /* Insertionsort
         * best-case:       O(n^2)
