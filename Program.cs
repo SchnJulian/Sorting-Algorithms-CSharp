@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace SortingAlgorithms {
     class MainClass {
-        public static void Main(string[] args) {
+        public static void Main() {
             Random random = new Random();
             Console.WriteLine("q:");
             for (int i = 0; i < 11; i++) {

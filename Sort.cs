@@ -1,72 +1,71 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace SortingAlgorithms {
     public static class Sort {
 
         // auxiliary functions
-        public static void Swap<T>(List<T> array, int i, int j) {
-            T h = array[i];
-            array[i] = array[j];
-            array[j] = h;
-        }
-
         public static void Swap(sbyte[] array, int i, int j) {
-            sbyte h = array[i];
+            var h = array[i];
             array[i] = array[j];
             array[j] = h;
         }
 
         public static void Swap(byte[] array, int i, int j) {
-            byte h = array[i];
+            var h = array[i];
             array[i] = array[j];
             array[j] = h;
         }
 
         public static void Swap(short[] array, int i, int j) {
-            short h = array[i];
+            var h = array[i];
             array[i] = array[j];
             array[j] = h;
         }
 
         public static void Swap(ushort[] array, int i, int j) {
-            ushort h = array[i];
+            var h = array[i];
             array[i] = array[j];
             array[j] = h;
         }
 
         public static void Swap(int[] array, int i, int j) {
-            int h = array[i];
+            var h = array[i];
             array[i] = array[j];
             array[j] = h;
         }
 
         public static void Swap(uint[] array, int i, int j) {
-            uint h = array[i];
+            var h = array[i];
             array[i] = array[j];
             array[j] = h;
         }
 
         public static void Swap(long[] array, int i, int j) {
-            long h = array[i];
+            var h = array[i];
             array[i] = array[j];
             array[j] = h;
         }
 
         public static void Swap(ulong[] array, int i, int j) {
-            ulong h = array[i];
+            var h = array[i];
             array[i] = array[j];
             array[j] = h;
         }
 
         public static void Swap(decimal[] array, int i, int j) {
-            decimal h = array[i];
+            var h = array[i];
             array[i] = array[j];
             array[j] = h;
         }
 
-        public static void Swap<T>(T[] array, int i, int j) {
-            T h = array[i];
+        public static void Swap(double[] array, int i, int j) {
+            var h = array[i];
+            array[i] = array[j];
+            array[j] = h;
+        }
+
+        public static void Swap(float[] array, int i, int j) {
+            var h = array[i];
             array[i] = array[j];
             array[j] = h;
         }
