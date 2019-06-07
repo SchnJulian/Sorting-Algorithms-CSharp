@@ -12,7 +12,7 @@ namespace SortingAlgorithms {
                     x[j] = random.NextDouble() * 10;
                 }
                 printList(Sort.HeapSort(x));
-                Console.WriteLine(Sort.IsSorted(Sort.HeapSort(x)));
+                Console.WriteLine(IsSorted(Sort.MergeSort(x)));
             }
         }
 
@@ -42,6 +42,14 @@ namespace SortingAlgorithms {
                 Console.Write(c + " ");
             }
             Console.WriteLine("");
+        }
+        public static Boolean IsSorted<T>(T[] array) where T : IComparable {
+            for (int i = 1; i < array.Length; i++) {
+                if (array[i].CompareTo(array[i - 1]) < 0) {
+                    return false;
+                }
+            }
+            return true;
         }
 
     }

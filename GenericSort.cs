@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 namespace GenericSort {
     public static class GenericSort {
-        public GenericSort() {
-        }
+
 
         public static List<T> MergeSort<T>(List<T> A) where T : IComparable {
             //  Exit condition for recursion
@@ -138,7 +137,7 @@ namespace GenericSort {
         public static List<T> InsertionSort<T>(List<T> A) where T : IComparable {
             int n = A.Count;
             //  value to be sorted 
-            T value = default;
+            T value = default(T);
             //  Insertion index of 'value'
             int j;
             //  Iterate from 2nd to last element

@@ -4,677 +4,722 @@ using System.Collections.Generic;
 namespace SortingAlgorithms {
     public static class Sort {
 
-        //  auxiliary functions
-        public static void Swap<T>(List<T> A, int i, int j) {
-            T h = A[i];
-            A[i] = A[j];
-            A[j] = h;
+        // auxiliary functions
+        public static void Swap<T>(List<T> array, int i, int j) {
+            T h = array[i];
+            array[i] = array[j];
+            array[j] = h;
         }
 
-        public static void Swap<T>(T[] A, int i, int j) {
-            T h = A[i];
-            A[i] = A[j];
-            A[j] = h;
+        public static void Swap(sbyte[] array, int i, int j) {
+            sbyte h = array[i];
+            array[i] = array[j];
+            array[j] = h;
         }
 
-        public static Boolean IsSorted<T>(T[] A) where T : IComparable {
-            for (int i = 1; i < A.Length; i++) {
-                if (A[i].CompareTo(A[i - 1]) < 0) {
-                    return false;
-                }
-            }
-            return true;
+        public static void Swap(byte[] array, int i, int j) {
+            byte h = array[i];
+            array[i] = array[j];
+            array[j] = h;
         }
 
-        /*********************************************************************/
+        public static void Swap(short[] array, int i, int j) {
+            short h = array[i];
+            array[i] = array[j];
+            array[j] = h;
+        }
 
-        /* 
-         * Mergesort
-         * best-case:       O(n*log(n))
-         * average-case:    O(n*log(n))
-         * worst-case:      O(n*log(n))
-         */
-     
+        public static void Swap(ushort[] array, int i, int j) {
+            ushort h = array[i];
+            array[i] = array[j];
+            array[j] = h;
+        }
 
-        public static int[] MergeSort(int[] A) {
+        public static void Swap(int[] array, int i, int j) {
+            int h = array[i];
+            array[i] = array[j];
+            array[j] = h;
+        }
+
+        public static void Swap(uint[] array, int i, int j) {
+            uint h = array[i];
+            array[i] = array[j];
+            array[j] = h;
+        }
+
+        public static void Swap(long[] array, int i, int j) {
+            long h = array[i];
+            array[i] = array[j];
+            array[j] = h;
+        }
+
+        public static void Swap(ulong[] array, int i, int j) {
+            ulong h = array[i];
+            array[i] = array[j];
+            array[j] = h;
+        }
+
+        public static void Swap(decimal[] array, int i, int j) {
+            decimal h = array[i];
+            array[i] = array[j];
+            array[j] = h;
+        }
+
+        public static void Swap<T>(T[] array, int i, int j) {
+            T h = array[i];
+            array[i] = array[j];
+            array[j] = h;
+        }
+
+        /// <summary>
+        /// Mergesort
+        /// best-case: O(n* log(n))
+        /// average-case: O(n* log(n))
+        /// worst-case: O(n* log(n))
+        /// </summary>
+        /// <returns>The sorted array.</returns>
+        /// <param name="array">array.</param>
+        public static int[] MergeSort(int[] array) {
             //  Exit condition for recursion
-            if (A.Length <= 1) return A;
+            if (array.Length <= 1) return array;
 
 
 
             //  Middle index of list to sort
-            int m = A.Length / 2;
+            int m = array.Length / 2;
             //  Define left and right sub-listså
-            var l = new int[m];
-            var r = new int[A.Length - m];
+            int[] left_array = new int[m];
+            int[] right_array = new int[array.Length - m];
 
 
 
             //  Initialize left list
-            for (int i = 0; i < m; i++) l[i] = A[i];
+            for (int i = 0; i < m; i++) left_array[i] = array[i];
 
             //  Initialize right list
-            for (int i = m, x = 0; i < A.Length; i++, x++) r[x] = A[i];
+            for (int i = m, x = 0; i < array.Length; i++, x++) right_array[x] = array[i];
 
             //  Recursively sort left half of the list
-            l = MergeSort(l);
+            left_array = MergeSort(left_array);
             //  Recursively sort right half of the list
-            r = MergeSort(r);
+            right_array = MergeSort(right_array);
 
             //  Merge sorted sub-lists
-            return Merge(l, r);
+            return Merge(left_array, right_array);
         }
 
-        public static int[] Merge(int[] l, int[] r) {
-            var m = new int[l.Length + r.Length];
+        /// <summary>
+        /// Merge the specified left_array and right_array.
+        /// </summary>
+        /// <returns>The merge.</returns>
+        /// <param name="left_array">Left array.</param>
+        /// <param name="right_array">Right array.</param>
+        public static int[] Merge(int[] left_array, int[] right_array) {
+            int[] m = new int[left_array.Length + right_array.Length];
             int index_l = 0;
             int nl, nr;
-            nl = l.Length - 1;
-            nr = r.Length - 1;
+            nl = left_array.Length - 1;
+            nr = right_array.Length - 1;
             for (int i = 0; i <= nl + nr + 1; i++) {
                 if (index_l > nl) {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                     continue;
                 }
 
                 if (index_l < i - nr) {
-                    m[i] = (l[index_l]);
+                    m[i] = (left_array[index_l]);
                     index_l++;
                     continue;
                 }
 
-                if (l[index_l].CompareTo(r[i - index_l]) < 0 || l[index_l].Equals(r[i - index_l])) {
-                    m[i] = (l[index_l]);
+                if (left_array[index_l].CompareTo(right_array[i - index_l]) < 0 || left_array[index_l].Equals(right_array[i - index_l])) {
+                    m[i] = (left_array[index_l]);
                     index_l++;
                 } else {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                 }
             }
             return m;
         }
 
-
-        public static double[] MergeSort(double[] A) {
+        public static double[] MergeSort(double[] array) {
             //  Exit condition for recursion
-            if (A.Length <= 1) return A;
+            if (array.Length <= 1) return array;
 
 
 
             //  Middle index of list to sort
-            int m = A.Length / 2;
+            int m = array.Length / 2;
             //  Define left and right sub-lists
-            var l = new double[m];
-            var r = new double[A.Length - m];
+            double[] left_array = new double[m];
+            double[] right_array = new double[array.Length - m];
 
 
 
             //  Initialize left list
-            for (int i = 0; i < m; i++) l[i] = A[i];
+            for (int i = 0; i < m; i++) left_array[i] = array[i];
 
             //  Initialize right list
-            for (int i = m, x = 0; i < A.Length; i++, x++) r[x] = A[i];
+            for (int i = m, x = 0; i < array.Length; i++, x++) right_array[x] = array[i];
 
             //  Recursively sort left half of the list
-            l = MergeSort(l);
+            left_array = MergeSort(left_array);
             //  Recursively sort right half of the list
-            r = MergeSort(r);
+            right_array = MergeSort(right_array);
 
             //  Merge sorted sub-lists
-            return Merge(l, r);
+            return Merge(left_array, right_array);
         }
 
-        public static double[] Merge(double[] l, double[] r) {
-            var m = new double[l.Length + r.Length];
+        public static double[] Merge(double[] left_array, double[] right_array) {
+            double[] m = new double[left_array.Length + right_array.Length];
             int index_l = 0;
             int nl, nr;
-            nl = l.Length - 1;
-            nr = r.Length - 1;
+            nl = left_array.Length - 1;
+            nr = right_array.Length - 1;
             for (int i = 0; i <= nl + nr + 1; i++) {
                 if (index_l > nl) {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                     continue;
                 }
 
                 if (index_l < i - nr) {
-                    m[i] = (l[index_l]);
+                    m[i] = (left_array[index_l]);
                     index_l++;
                     continue;
                 }
 
-                if (l[index_l].CompareTo(r[i - index_l]) < 0 || l[index_l].Equals(r[i - index_l])) {
-                    m[i] = (l[index_l]);
+                if (left_array[index_l].CompareTo(right_array[i - index_l]) < 0 || left_array[index_l].Equals(right_array[i - index_l])) {
+                    m[i] = (left_array[index_l]);
                     index_l++;
                 } else {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                 }
             }
             return m;
         }
 
-        public static float[] MergeSort(float[] A) {
+        public static float[] MergeSort(float[] array) {
             //  Exit condition for recursion
-            if (A.Length <= 1) return A;
+            if (array.Length <= 1) return array;
 
 
 
             //  Middle index of list to sort
-            int m = A.Length / 2;
+            int m = array.Length / 2;
             //  Define left and right sub-lists
-            var l = new float[m];
-            var r = new float[A.Length - m];
+            float[] left_array = new float[m];
+            float[] right_array = new float[array.Length - m];
 
 
 
             //  Initialize left list
-            for (int i = 0; i < m; i++) l[i] = A[i];
+            for (int i = 0; i < m; i++) left_array[i] = array[i];
 
             //  Initialize right list
-            for (int i = m, x = 0; i < A.Length; i++, x++) r[x] = A[i];
+            for (int i = m, x = 0; i < array.Length; i++, x++) right_array[x] = array[i];
 
             //  Recursively sort left half of the list
-            l = MergeSort(l);
+            left_array = MergeSort(left_array);
             //  Recursively sort right half of the list
-            r = MergeSort(r);
+            right_array = MergeSort(right_array);
 
             //  Merge sorted sub-lists
-            return Merge(l, r);
+            return Merge(left_array, right_array);
         }
 
-        public static float[] Merge(float[] l, float[] r) {
-            var m = new float[l.Length + r.Length];
+        public static float[] Merge(float[] left_array, float[] right_array) {
+            float[] m = new float[left_array.Length + right_array.Length];
             int index_l = 0;
             int nl, nr;
-            nl = l.Length - 1;
-            nr = r.Length - 1;
+            nl = left_array.Length - 1;
+            nr = right_array.Length - 1;
             for (int i = 0; i <= nl + nr + 1; i++) {
                 if (index_l > nl) {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                     continue;
                 }
 
                 if (index_l < i - nr) {
-                    m[i] = (l[index_l]);
+                    m[i] = (left_array[index_l]);
                     index_l++;
                     continue;
                 }
 
-                if (l[index_l].CompareTo(r[i - index_l]) < 0 || l[index_l].Equals(r[i - index_l])) {
-                    m[i] = (l[index_l]);
+                if (left_array[index_l].CompareTo(right_array[i - index_l]) < 0 || left_array[index_l].Equals(right_array[i - index_l])) {
+                    m[i] = (left_array[index_l]);
                     index_l++;
                 } else {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                 }
             }
             return m;
         }
 
-        public static sbyte[] MergeSort(sbyte[] A) {
+        public static sbyte[] MergeSort(sbyte[] array) {
             //  Exit condition for recursion
-            if (A.Length <= 1) return A;
+            if (array.Length <= 1) return array;
 
 
 
             //  Middle index of list to sort
-            int m = A.Length / 2;
+            int m = array.Length / 2;
             //  Define left and right sub-lists
-            var l = new sbyte[m];
-            var r = new sbyte[A.Length - m];
+            sbyte[] left_array = new sbyte[m];
+            sbyte[] right_array = new sbyte[array.Length - m];
 
 
 
             //  Initialize left list
-            for (int i = 0; i < m; i++) l[i] = A[i];
+            for (int i = 0; i < m; i++) left_array[i] = array[i];
 
             //  Initialize right list
-            for (int i = m, x = 0; i < A.Length; i++, x++) r[x] = A[i];
+            for (int i = m, x = 0; i < array.Length; i++, x++) right_array[x] = array[i];
 
             //  Recursively sort left half of the list
-            l = MergeSort(l);
+            left_array = MergeSort(left_array);
             //  Recursively sort right half of the list
-            r = MergeSort(r);
+            right_array = MergeSort(right_array);
 
             //  Merge sorted sub-lists
-            return Merge(l, r);
+            return Merge(left_array, right_array);
         }
 
-        public static sbyte[] Merge(sbyte[] l, sbyte[] r) {
-            var m = new sbyte[l.Length + r.Length];
+        public static sbyte[] Merge(sbyte[] left_array, sbyte[] right_array) {
+            sbyte[] m = new sbyte[left_array.Length + right_array.Length];
             int index_l = 0;
             int nl, nr;
-            nl = l.Length - 1;
-            nr = r.Length - 1;
+            nl = left_array.Length - 1;
+            nr = right_array.Length - 1;
             for (int i = 0; i <= nl + nr + 1; i++) {
                 if (index_l > nl) {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                     continue;
                 }
 
                 if (index_l < i - nr) {
-                    m[i] = (l[index_l]);
+                    m[i] = (left_array[index_l]);
                     index_l++;
                     continue;
                 }
 
-                if (l[index_l].CompareTo(r[i - index_l]) < 0 || l[index_l].Equals(r[i - index_l])) {
-                    m[i] = (l[index_l]);
+                if (left_array[index_l].CompareTo(right_array[i - index_l]) < 0 || left_array[index_l].Equals(right_array[i - index_l])) {
+                    m[i] = (left_array[index_l]);
                     index_l++;
                 } else {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                 }
             }
             return m;
         }
 
-
-
-        public static short[] MergeSort(short[] A) {
+        public static short[] MergeSort(short[] array) {
             //  Exit condition for recursion
-            if (A.Length <= 1) return A;
+            if (array.Length <= 1) return array;
 
 
 
             //  Middle index of list to sort
-            int m = A.Length / 2;
+            int m = array.Length / 2;
             //  Define left and right sub-lists
-            var l = new short[m];
-            var r = new short[A.Length - m];
+            short[] left_array = new short[m];
+            short[] right_array = new short[array.Length - m];
 
 
 
             //  Initialize left list
-            for (int i = 0; i < m; i++) l[i] = A[i];
+            for (int i = 0; i < m; i++) left_array[i] = array[i];
 
             //  Initialize right list
-            for (int i = m, x = 0; i < A.Length; i++, x++) r[x] = A[i];
+            for (int i = m, x = 0; i < array.Length; i++, x++) right_array[x] = array[i];
 
             //  Recursively sort left half of the list
-            l = MergeSort(l);
+            left_array = MergeSort(left_array);
             //  Recursively sort right half of the list
-            r = MergeSort(r);
+            right_array = MergeSort(right_array);
 
             //  Merge sorted sub-lists
-            return Merge(l, r);
+            return Merge(left_array, right_array);
         }
 
-        public static short[] Merge(short[] l, short[] r) {
-            var m = new short[l.Length + r.Length];
+        public static short[] Merge(short[] left_array, short[] right_array) {
+            short[] m = new short[left_array.Length + right_array.Length];
             int index_l = 0;
             int nl, nr;
-            nl = l.Length - 1;
-            nr = r.Length - 1;
+            nl = left_array.Length - 1;
+            nr = right_array.Length - 1;
             for (int i = 0; i <= nl + nr + 1; i++) {
                 if (index_l > nl) {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                     continue;
                 }
 
                 if (index_l < i - nr) {
-                    m[i] = (l[index_l]);
+                    m[i] = (left_array[index_l]);
                     index_l++;
                     continue;
                 }
 
-                if (l[index_l].CompareTo(r[i - index_l]) < 0 || l[index_l].Equals(r[i - index_l])) {
-                    m[i] = (l[index_l]);
+                if (left_array[index_l].CompareTo(right_array[i - index_l]) < 0 || left_array[index_l].Equals(right_array[i - index_l])) {
+                    m[i] = (left_array[index_l]);
                     index_l++;
                 } else {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                 }
             }
             return m;
         }
 
-        public static long[] MergeSort(long[] A) {
+        public static long[] MergeSort(long[] array) {
             //  Exit condition for recursion
-            if (A.Length <= 1) return A;
+            if (array.Length <= 1) return array;
 
 
 
             //  Middle index of list to sort
-            int m = A.Length / 2;
+            int m = array.Length / 2;
             //  Define left and right sub-lists
-            var l = new long[m];
-            var r = new long[A.Length - m];
+            long[] left_array = new long[m];
+            long[] right_array = new long[array.Length - m];
 
 
 
             //  Initialize left list
-            for (int i = 0; i < m; i++) l[i] = A[i];
+            for (int i = 0; i < m; i++) left_array[i] = array[i];
 
             //  Initialize right list
-            for (int i = m, x = 0; i < A.Length; i++, x++) r[x] = A[i];
+            for (int i = m, x = 0; i < array.Length; i++, x++) right_array[x] = array[i];
 
             //  Recursively sort left half of the list
-            l = MergeSort(l);
+            left_array = MergeSort(left_array);
             //  Recursively sort right half of the list
-            r = MergeSort(r);
+            right_array = MergeSort(right_array);
 
             //  Merge sorted sub-lists
-            return Merge(l, r);
+            return Merge(left_array, right_array);
         }
 
-        public static long[] Merge(long[] l, long[] r) {
-            var m = new long[l.Length + r.Length];
+        public static long[] Merge(long[] left_array, long[] right_array) {
+            long[] m = new long[left_array.Length + right_array.Length];
             int index_l = 0;
             int nl, nr;
-            nl = l.Length - 1;
-            nr = r.Length - 1;
+            nl = left_array.Length - 1;
+            nr = right_array.Length - 1;
             for (int i = 0; i <= nl + nr + 1; i++) {
                 if (index_l > nl) {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                     continue;
                 }
 
                 if (index_l < i - nr) {
-                    m[i] = (l[index_l]);
+                    m[i] = (left_array[index_l]);
                     index_l++;
                     continue;
                 }
 
-                if (l[index_l].CompareTo(r[i - index_l]) < 0 || l[index_l].Equals(r[i - index_l])) {
-                    m[i] = (l[index_l]);
+                if (left_array[index_l].CompareTo(right_array[i - index_l]) < 0 || left_array[index_l].Equals(right_array[i - index_l])) {
+                    m[i] = (left_array[index_l]);
                     index_l++;
                 } else {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                 }
             }
             return m;
         }
 
-        public static byte[] MergeSort(byte[] A) {
+        public static byte[] MergeSort(byte[] array) {
             //  Exit condition for recursion
-            if (A.Length <= 1) return A;
+            if (array.Length <= 1) return array;
 
 
 
             //  Middle index of list to sort
-            int m = A.Length / 2;
+            int m = array.Length / 2;
             //  Define left and right sub-lists
-            var l = new byte[m];
-            var r = new byte[A.Length - m];
+            byte[] left_array = new byte[m];
+            byte[] right_array = new byte[array.Length - m];
 
 
 
             //  Initialize left list
-            for (int i = 0; i < m; i++) l[i] = A[i];
+            for (int i = 0; i < m; i++) left_array[i] = array[i];
 
             //  Initialize right list
-            for (int i = m, x = 0; i < A.Length; i++, x++) r[x] = A[i];
+            for (int i = m, x = 0; i < array.Length; i++, x++) right_array[x] = array[i];
 
             //  Recursively sort left half of the list
-            l = MergeSort(l);
+            left_array = MergeSort(left_array);
             //  Recursively sort right half of the list
-            r = MergeSort(r);
+            right_array = MergeSort(right_array);
 
             //  Merge sorted sub-lists
-            return Merge(l, r);
+            return Merge(left_array, right_array);
         }
 
-        public static byte[] Merge(byte[] l, byte[] r) {
-            var m = new byte[l.Length + r.Length];
+        public static byte[] Merge(byte[] left_array, byte[] right_array) {
+            byte[] m = new byte[left_array.Length + right_array.Length];
             int index_l = 0;
             int nl, nr;
-            nl = l.Length - 1;
-            nr = r.Length - 1;
+            nl = left_array.Length - 1;
+            nr = right_array.Length - 1;
             for (int i = 0; i <= nl + nr + 1; i++) {
                 if (index_l > nl) {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                     continue;
                 }
 
                 if (index_l < i - nr) {
-                    m[i] = (l[index_l]);
+                    m[i] = (left_array[index_l]);
                     index_l++;
                     continue;
                 }
 
-                if (l[index_l].CompareTo(r[i - index_l]) < 0 || l[index_l].Equals(r[i - index_l])) {
-                    m[i] = (l[index_l]);
+                if (left_array[index_l].CompareTo(right_array[i - index_l]) < 0 || left_array[index_l].Equals(right_array[i - index_l])) {
+                    m[i] = (left_array[index_l]);
                     index_l++;
                 } else {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                 }
             }
             return m;
         }
 
-        public static ushort[] MergeSort(ushort[] A) {
+        public static ushort[] MergeSort(ushort[] array) {
             //  Exit condition for recursion
-            if (A.Length <= 1) return A;
+            if (array.Length <= 1) return array;
 
 
 
             //  Middle index of list to sort
-            int m = A.Length / 2;
+            int m = array.Length / 2;
             //  Define left and right sub-lists
-            var l = new ushort[m];
-            var r = new ushort[A.Length - m];
+            ushort[] left_array = new ushort[m];
+            ushort[] right_array = new ushort[array.Length - m];
 
 
 
             //  Initialize left list
-            for (int i = 0; i < m; i++) l[i] = A[i];
+            for (int i = 0; i < m; i++) left_array[i] = array[i];
 
             //  Initialize right list
-            for (int i = m, x = 0; i < A.Length; i++, x++) r[x] = A[i];
+            for (int i = m, x = 0; i < array.Length; i++, x++) right_array[x] = array[i];
 
             //  Recursively sort left half of the list
-            l = MergeSort(l);
+            left_array = MergeSort(left_array);
             //  Recursively sort right half of the list
-            r = MergeSort(r);
+            right_array = MergeSort(right_array);
 
             //  Merge sorted sub-lists
-            return Merge(l, r);
+            return Merge(left_array, right_array);
         }
 
-        public static ushort[] Merge(ushort[] l, ushort[] r) {
-            var m = new ushort[l.Length + r.Length];
+        public static ushort[] Merge(ushort[] left_array, ushort[] right_array) {
+            ushort[] m = new ushort[left_array.Length + right_array.Length];
             int index_l = 0;
             int nl, nr;
-            nl = l.Length - 1;
-            nr = r.Length - 1;
+            nl = left_array.Length - 1;
+            nr = right_array.Length - 1;
             for (int i = 0; i <= nl + nr + 1; i++) {
                 if (index_l > nl) {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                     continue;
                 }
 
                 if (index_l < i - nr) {
-                    m[i] = (l[index_l]);
+                    m[i] = (left_array[index_l]);
                     index_l++;
                     continue;
                 }
 
-                if (l[index_l].CompareTo(r[i - index_l]) < 0 || l[index_l].Equals(r[i - index_l])) {
-                    m[i] = (l[index_l]);
+                if (left_array[index_l].CompareTo(right_array[i - index_l]) < 0 || left_array[index_l].Equals(right_array[i - index_l])) {
+                    m[i] = (left_array[index_l]);
                     index_l++;
                 } else {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                 }
             }
             return m;
         }
 
-        public static uint[] MergeSort(uint[] A) {
+        public static uint[] MergeSort(uint[] array) {
             //  Exit condition for recursion
-            if (A.Length <= 1) return A;
+            if (array.Length <= 1) return array;
 
 
 
             //  Middle index of list to sort
-            int m = A.Length / 2;
+            int m = array.Length / 2;
             //  Define left and right sub-lists
-            var l = new uint[m];
-            var r = new uint[A.Length - m];
+            uint[] left_array = new uint[m];
+            uint[] right_array = new uint[array.Length - m];
 
 
 
             //  Initialize left list
-            for (int i = 0; i < m; i++) l[i] = A[i];
+            for (int i = 0; i < m; i++) left_array[i] = array[i];
 
             //  Initialize right list
-            for (int i = m, x = 0; i < A.Length; i++, x++) r[x] = A[i];
+            for (int i = m, x = 0; i < array.Length; i++, x++) right_array[x] = array[i];
 
             //  Recursively sort left half of the list
-            l = MergeSort(l);
+            left_array = MergeSort(left_array);
             //  Recursively sort right half of the list
-            r = MergeSort(r);
+            right_array = MergeSort(right_array);
 
             //  Merge sorted sub-lists
-            return Merge(l, r);
+            return Merge(left_array, right_array);
         }
 
-        public static uint[] Merge(uint[] l, uint[] r) {
-            var m = new uint[l.Length + r.Length];
+        public static uint[] Merge(uint[] left_array, uint[] right_array) {
+            uint[] m = new uint[left_array.Length + right_array.Length];
             int index_l = 0;
             int nl, nr;
-            nl = l.Length - 1;
-            nr = r.Length - 1;
+            nl = left_array.Length - 1;
+            nr = right_array.Length - 1;
             for (int i = 0; i <= nl + nr + 1; i++) {
                 if (index_l > nl) {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                     continue;
                 }
 
                 if (index_l < i - nr) {
-                    m[i] = (l[index_l]);
+                    m[i] = (left_array[index_l]);
                     index_l++;
                     continue;
                 }
 
-                if (l[index_l].CompareTo(r[i - index_l]) < 0 || l[index_l].Equals(r[i - index_l])) {
-                    m[i] = (l[index_l]);
+                if (left_array[index_l].CompareTo(right_array[i - index_l]) < 0 || left_array[index_l].Equals(right_array[i - index_l])) {
+                    m[i] = (left_array[index_l]);
                     index_l++;
                 } else {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                 }
             }
             return m;
         }
 
-        public static ulong[] MergeSort(ulong[] A) {
+        public static ulong[] MergeSort(ulong[] array) {
             //  Exit condition for recursion
-            if (A.Length <= 1) return A;
+            if (array.Length <= 1) return array;
 
 
 
             //  Middle index of list to sort
-            int m = A.Length / 2;
+            int m = array.Length / 2;
             //  Define left and right sub-lists
-            var l = new ulong[m];
-            var r = new ulong[A.Length - m];
+            ulong[] left_array = new ulong[m];
+            ulong[] right_array = new ulong[array.Length - m];
 
 
 
             //  Initialize left list
-            for (int i = 0; i < m; i++) l[i] = A[i];
+            for (int i = 0; i < m; i++) left_array[i] = array[i];
 
             //  Initialize right list
-            for (int i = m, x = 0; i < A.Length; i++, x++) r[x] = A[i];
+            for (int i = m, x = 0; i < array.Length; i++, x++) right_array[x] = array[i];
 
             //  Recursively sort left half of the list
-            l = MergeSort(l);
+            left_array = MergeSort(left_array);
             //  Recursively sort right half of the list
-            r = MergeSort(r);
+            right_array = MergeSort(right_array);
 
             //  Merge sorted sub-lists
-            return Merge(l, r);
+            return Merge(left_array, right_array);
         }
 
-        public static ulong[] Merge(ulong[] l, ulong[] r) {
-            var m = new ulong[l.Length + r.Length];
+        public static ulong[] Merge(ulong[] left_array, ulong[] right_array) {
+            ulong[] m = new ulong[left_array.Length + right_array.Length];
             int index_l = 0;
             int nl, nr;
-            nl = l.Length - 1;
-            nr = r.Length - 1;
+            nl = left_array.Length - 1;
+            nr = right_array.Length - 1;
             for (int i = 0; i <= nl + nr + 1; i++) {
                 if (index_l > nl) {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                     continue;
                 }
 
                 if (index_l < i - nr) {
-                    m[i] = (l[index_l]);
+                    m[i] = (left_array[index_l]);
                     index_l++;
                     continue;
                 }
 
-                if (l[index_l].CompareTo(r[i - index_l]) < 0 || l[index_l].Equals(r[i - index_l])) {
-                    m[i] = (l[index_l]);
+                if (left_array[index_l].CompareTo(right_array[i - index_l]) < 0 || left_array[index_l].Equals(right_array[i - index_l])) {
+                    m[i] = (left_array[index_l]);
                     index_l++;
                 } else {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                 }
             }
             return m;
         }
 
-
-        public static decimal[] MergeSort(decimal[] A) {
+        public static decimal[] MergeSort(decimal[] array) {
             //  Exit condition for recursion
-            if (A.Length <= 1) return A;
+            if (array.Length <= 1) return array;
 
 
 
             //  Middle index of list to sort
-            int m = A.Length / 2;
+            int m = array.Length / 2;
             //  Define left and right sub-lists
-            var l = new decimal[m];
-            var r = new decimal[A.Length - m];
+            decimal[] left_array = new decimal[m];
+            decimal[] right_array = new decimal[array.Length - m];
 
 
 
             //  Initialize left list
-            for (int i = 0; i < m; i++) l[i] = A[i];
+            for (int i = 0; i < m; i++) left_array[i] = array[i];
 
             //  Initialize right list
-            for (int i = m, x = 0; i < A.Length; i++, x++) r[x] = A[i];
+            for (int i = m, x = 0; i < array.Length; i++, x++) right_array[x] = array[i];
 
             //  Recursively sort left half of the list
-            l = MergeSort(l);
+            left_array = MergeSort(left_array);
             //  Recursively sort right half of the list
-            r = MergeSort(r);
+            right_array = MergeSort(right_array);
 
             //  Merge sorted sub-lists
-            return Merge(l, r);
+            return Merge(left_array, right_array);
         }
 
-        public static decimal[] Merge(decimal[] l, decimal[] r) {
-            var m = new decimal[l.Length + r.Length];
+        public static decimal[] Merge(decimal[] left_array, decimal[] right_array) {
+            decimal[] m = new decimal[left_array.Length + right_array.Length];
             int index_l = 0;
             int nl, nr;
-            nl = l.Length - 1;
-            nr = r.Length - 1;
+            nl = left_array.Length - 1;
+            nr = right_array.Length - 1;
             for (int i = 0; i <= nl + nr + 1; i++) {
                 if (index_l > nl) {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                     continue;
                 }
 
                 if (index_l < i - nr) {
-                    m[i] = (l[index_l]);
+                    m[i] = (left_array[index_l]);
                     index_l++;
                     continue;
                 }
 
-                if (l[index_l].CompareTo(r[i - index_l]) < 0 || l[index_l].Equals(r[i - index_l])) {
-                    m[i] = (l[index_l]);
+                if (left_array[index_l].CompareTo(right_array[i - index_l]) < 0 || left_array[index_l].Equals(right_array[i - index_l])) {
+                    m[i] = (left_array[index_l]);
                     index_l++;
                 } else {
-                    m[i] = (r[i - index_l]);
+                    m[i] = (right_array[i - index_l]);
                 }
             }
             return m;
         }
 
-        /* Insertionsort
-        * best-case:       O(n^2)
-        * average-case:    O(n^2)
-        * worst-case:      O(n^2)
-        */
-       
-        public static int[] SelectionSort(int[] A) {
-            int n = A.Length - 1;
+        /// <summary>
+        /// Selectionsort
+        /// best-case, average-case, worst-case: O(n^2)
+        /// </summary>
+        /// <returns>The sorted array.</returns>
+        /// <param name="array">Array.</param>
+        public static int[] SelectionSort(int[] array) {
+            int n = array.Length - 1;
             //  Current position for insertion
             int index = 0;
             //  Position of the current smallest element
@@ -682,19 +727,19 @@ namespace SortingAlgorithms {
             do {
                 minPos = index;
                 for (int i = (index + 1); i <= n; i++) {
-                    if (A[i].CompareTo(A[minPos]) < 0) {
+                    if (array[i].CompareTo(array[minPos]) < 0) {
                         minPos = i;
                     }
                 }
-                Swap(A, minPos, index);
+                Swap(array, minPos, index);
                 index++;
             } while (index < n);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static double[] SelectionSort(double[] A) {
-            int n = A.Length - 1;
+        public static double[] SelectionSort(double[] array) {
+            int n = array.Length - 1;
             //  Current position for insertion
             int index = 0;
             //  Position of the current smallest element
@@ -702,20 +747,19 @@ namespace SortingAlgorithms {
             do {
                 minPos = index;
                 for (int i = (index + 1); i <= n; i++) {
-                    if (A[i].CompareTo(A[minPos]) < 0) {
+                    if (array[i].CompareTo(array[minPos]) < 0) {
                         minPos = i;
                     }
                 }
-                Swap(A, minPos, index);
+                Swap(array, minPos, index);
                 index++;
             } while (index < n);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-
-        public static float[] SelectionSort(float[] A) {
-            int n = A.Length - 1;
+        public static float[] SelectionSort(float[] array) {
+            int n = array.Length - 1;
             //  Current position for insertion
             int index = 0;
             //  Position of the current smallest element
@@ -723,19 +767,19 @@ namespace SortingAlgorithms {
             do {
                 minPos = index;
                 for (int i = (index + 1); i <= n; i++) {
-                    if (A[i].CompareTo(A[minPos]) < 0) {
+                    if (array[i].CompareTo(array[minPos]) < 0) {
                         minPos = i;
                     }
                 }
-                Swap(A, minPos, index);
+                Swap(array, minPos, index);
                 index++;
             } while (index < n);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static sbyte[] SelectionSort(sbyte[] A) {
-            int n = A.Length - 1;
+        public static sbyte[] SelectionSort(sbyte[] array) {
+            int n = array.Length - 1;
             //  Current position for insertion
             int index = 0;
             //  Position of the current smallest element
@@ -743,19 +787,19 @@ namespace SortingAlgorithms {
             do {
                 minPos = index;
                 for (int i = (index + 1); i <= n; i++) {
-                    if (A[i].CompareTo(A[minPos]) < 0) {
+                    if (array[i].CompareTo(array[minPos]) < 0) {
                         minPos = i;
                     }
                 }
-                Swap(A, minPos, index);
+                Swap(array, minPos, index);
                 index++;
             } while (index < n);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static byte[] SelectionSort(byte[] A) {
-            int n = A.Length - 1;
+        public static byte[] SelectionSort(byte[] array) {
+            int n = array.Length - 1;
             //  Current position for insertion
             int index = 0;
             //  Position of the current smallest element
@@ -763,19 +807,19 @@ namespace SortingAlgorithms {
             do {
                 minPos = index;
                 for (int i = (index + 1); i <= n; i++) {
-                    if (A[i].CompareTo(A[minPos]) < 0) {
+                    if (array[i].CompareTo(array[minPos]) < 0) {
                         minPos = i;
                     }
                 }
-                Swap(A, minPos, index);
+                Swap(array, minPos, index);
                 index++;
             } while (index < n);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static long[] SelectionSort(long[] A) {
-            int n = A.Length - 1;
+        public static long[] SelectionSort(long[] array) {
+            int n = array.Length - 1;
             //  Current position for insertion
             int index = 0;
             //  Position of the current smallest element
@@ -783,19 +827,19 @@ namespace SortingAlgorithms {
             do {
                 minPos = index;
                 for (int i = (index + 1); i <= n; i++) {
-                    if (A[i].CompareTo(A[minPos]) < 0) {
+                    if (array[i].CompareTo(array[minPos]) < 0) {
                         minPos = i;
                     }
                 }
-                Swap(A, minPos, index);
+                Swap(array, minPos, index);
                 index++;
             } while (index < n);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static short[] SelectionSort(short[] A) {
-            int n = A.Length - 1;
+        public static short[] SelectionSort(short[] array) {
+            int n = array.Length - 1;
             //  Current position for insertion
             int index = 0;
             //  Position of the current smallest element
@@ -803,20 +847,19 @@ namespace SortingAlgorithms {
             do {
                 minPos = index;
                 for (int i = (index + 1); i <= n; i++) {
-                    if (A[i].CompareTo(A[minPos]) < 0) {
+                    if (array[i].CompareTo(array[minPos]) < 0) {
                         minPos = i;
                     }
                 }
-                Swap(A, minPos, index);
+                Swap(array, minPos, index);
                 index++;
             } while (index < n);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-
-        public static ushort[] SelectionSort(ushort[] A) {
-            int n = A.Length - 1;
+        public static ushort[] SelectionSort(ushort[] array) {
+            int n = array.Length - 1;
             //  Current position for insertion
             int index = 0;
             //  Position of the current smallest element
@@ -824,19 +867,19 @@ namespace SortingAlgorithms {
             do {
                 minPos = index;
                 for (int i = (index + 1); i <= n; i++) {
-                    if (A[i].CompareTo(A[minPos]) < 0) {
+                    if (array[i].CompareTo(array[minPos]) < 0) {
                         minPos = i;
                     }
                 }
-                Swap(A, minPos, index);
+                Swap(array, minPos, index);
                 index++;
             } while (index < n);
             //  Return sorted list
-            return A;
+            return array;
         }
-        //TODO uint16 usw?
-        public static uint[] SelectionSort(uint[] A) {
-            int n = A.Length - 1;
+
+        public static uint[] SelectionSort(uint[] array) {
+            int n = array.Length - 1;
             //  Current position for insertion
             int index = 0;
             //  Position of the current smallest element
@@ -844,19 +887,19 @@ namespace SortingAlgorithms {
             do {
                 minPos = index;
                 for (int i = (index + 1); i <= n; i++) {
-                    if (A[i].CompareTo(A[minPos]) < 0) {
+                    if (array[i].CompareTo(array[minPos]) < 0) {
                         minPos = i;
                     }
                 }
-                Swap(A, minPos, index);
+                Swap(array, minPos, index);
                 index++;
             } while (index < n);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static ulong[] SelectionSort(ulong[] A) {
-            int n = A.Length - 1;
+        public static ulong[] SelectionSort(ulong[] array) {
+            int n = array.Length - 1;
             //  Current position for insertion
             int index = 0;
             //  Position of the current smallest element
@@ -864,19 +907,19 @@ namespace SortingAlgorithms {
             do {
                 minPos = index;
                 for (int i = (index + 1); i <= n; i++) {
-                    if (A[i].CompareTo(A[minPos]) < 0) {
+                    if (array[i].CompareTo(array[minPos]) < 0) {
                         minPos = i;
                     }
                 }
-                Swap(A, minPos, index);
+                Swap(array, minPos, index);
                 index++;
             } while (index < n);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static decimal[] SelectionSort(decimal[] A) {
-            int n = A.Length - 1;
+        public static decimal[] SelectionSort(decimal[] array) {
+            int n = array.Length - 1;
             //  Current position for insertion
             int index = 0;
             //  Position of the current smallest element
@@ -884,1645 +927,1627 @@ namespace SortingAlgorithms {
             do {
                 minPos = index;
                 for (int i = (index + 1); i <= n; i++) {
-                    if (A[i].CompareTo(A[minPos]) < 0) {
+                    if (array[i].CompareTo(array[minPos]) < 0) {
                         minPos = i;
                     }
                 }
-                Swap(A, minPos, index);
+                Swap(array, minPos, index);
                 index++;
             } while (index < n);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-
-
-        /* 
-         * Bubblesort
-         * best-case:       O(n)
-         * average-case:    O(n^2)
-         * worst-case:      O(n^2)
-         */
-        
-
-        public static int[] BubbleSort(int[] A) {
-            int n = A.Length;
+        /// <summary>
+        /// Bubblesort
+        /// best-case : O(n), average-case, worst-case : O(n^2)
+        /// </summary>
+        /// <returns>The sorted array.</returns>
+        /// <param name="array">Array.</param>
+        public static int[] BubbleSort(int[] array) {
+            int n = array.Length;
             int newn;
             do {
                 //  New length of list to sort
                 newn = 1;
                 for (int i = 0; i < n - 1; i++) {
-                    if (A[i].CompareTo(A[i + 1]) > 0) {
-                        Swap(A, i, i + 1);
+                    if (array[i].CompareTo(array[i + 1]) > 0) {
+                        Swap(array, i, i + 1);
                         newn = i + 1;
                     }
                 }
                 n = newn;
             } while (n > 1);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-
-        public static double[] BubbleSort(double[] A) {
-            int n = A.Length;
+        public static double[] BubbleSort(double[] array) {
+            int n = array.Length;
             int newn;
             do {
                 //  New length of list to sort
                 newn = 1;
                 for (int i = 0; i < n - 1; i++) {
-                    if (A[i].CompareTo(A[i + 1]) > 0) {
-                        Swap(A, i, i + 1);
+                    if (array[i].CompareTo(array[i + 1]) > 0) {
+                        Swap(array, i, i + 1);
                         newn = i + 1;
                     }
                 }
                 n = newn;
             } while (n > 1);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static sbyte[] BubbleSort(sbyte[] A) {
-            int n = A.Length;
+        public static float[] BubbleSort(float[] array) {
+            int n = array.Length;
             int newn;
             do {
                 //  New length of list to sort
                 newn = 1;
                 for (int i = 0; i < n - 1; i++) {
-                    if (A[i].CompareTo(A[i + 1]) > 0) {
-                        Swap(A, i, i + 1);
+                    if (array[i].CompareTo(array[i + 1]) > 0) {
+                        Swap(array, i, i + 1);
                         newn = i + 1;
                     }
                 }
                 n = newn;
             } while (n > 1);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static short[] BubbleSort(short[] A) {
-            int n = A.Length;
+        public static sbyte[] BubbleSort(sbyte[] array) {
+            int n = array.Length;
             int newn;
             do {
                 //  New length of list to sort
                 newn = 1;
                 for (int i = 0; i < n - 1; i++) {
-                    if (A[i].CompareTo(A[i + 1]) > 0) {
-                        Swap(A, i, i + 1);
+                    if (array[i].CompareTo(array[i + 1]) > 0) {
+                        Swap(array, i, i + 1);
                         newn = i + 1;
                     }
                 }
                 n = newn;
             } while (n > 1);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static long[] BubbleSort(long[] A) {
-            int n = A.Length;
+        public static short[] BubbleSort(short[] array) {
+            int n = array.Length;
             int newn;
             do {
                 //  New length of list to sort
                 newn = 1;
                 for (int i = 0; i < n - 1; i++) {
-                    if (A[i].CompareTo(A[i + 1]) > 0) {
-                        Swap(A, i, i + 1);
+                    if (array[i].CompareTo(array[i + 1]) > 0) {
+                        Swap(array, i, i + 1);
                         newn = i + 1;
                     }
                 }
                 n = newn;
             } while (n > 1);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-
-        public static byte[] BubbleSort(byte[] A) {
-            int n = A.Length;
+        public static long[] BubbleSort(long[] array) {
+            int n = array.Length;
             int newn;
             do {
                 //  New length of list to sort
                 newn = 1;
                 for (int i = 0; i < n - 1; i++) {
-                    if (A[i].CompareTo(A[i + 1]) > 0) {
-                        Swap(A, i, i + 1);
+                    if (array[i].CompareTo(array[i + 1]) > 0) {
+                        Swap(array, i, i + 1);
                         newn = i + 1;
                     }
                 }
                 n = newn;
             } while (n > 1);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static ushort[] BubbleSort(ushort[] A) {
-            int n = A.Length;
+        public static byte[] BubbleSort(byte[] array) {
+            int n = array.Length;
             int newn;
             do {
                 //  New length of list to sort
                 newn = 1;
                 for (int i = 0; i < n - 1; i++) {
-                    if (A[i].CompareTo(A[i + 1]) > 0) {
-                        Swap(A, i, i + 1);
+                    if (array[i].CompareTo(array[i + 1]) > 0) {
+                        Swap(array, i, i + 1);
                         newn = i + 1;
                     }
                 }
                 n = newn;
             } while (n > 1);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static uint[] BubbleSort(uint[] A) {
-            int n = A.Length;
+        public static ushort[] BubbleSort(ushort[] array) {
+            int n = array.Length;
             int newn;
             do {
                 //  New length of list to sort
                 newn = 1;
                 for (int i = 0; i < n - 1; i++) {
-                    if (A[i].CompareTo(A[i + 1]) > 0) {
-                        Swap(A, i, i + 1);
+                    if (array[i].CompareTo(array[i + 1]) > 0) {
+                        Swap(array, i, i + 1);
                         newn = i + 1;
                     }
                 }
                 n = newn;
             } while (n > 1);
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static ulong[] BubbleSort(ulong[] A) {
-            int n = A.Length;
+        public static uint[] BubbleSort(uint[] array) {
+            int n = array.Length;
             int newn;
             do {
                 //  New length of list to sort
                 newn = 1;
                 for (int i = 0; i < n - 1; i++) {
-                    if (A[i].CompareTo(A[i + 1]) > 0) {
-                        Swap(A, i, i + 1);
+                    if (array[i].CompareTo(array[i + 1]) > 0) {
+                        Swap(array, i, i + 1);
                         newn = i + 1;
                     }
                 }
                 n = newn;
             } while (n > 1);
             //  Return sorted list
-            return A;
-
+            return array;
         }
 
-        public static decimal[] BubbleSort(decimal[] A) {
-            int n = A.Length;
+        public static ulong[] BubbleSort(ulong[] array) {
+            int n = array.Length;
             int newn;
             do {
                 //  New length of list to sort
                 newn = 1;
                 for (int i = 0; i < n - 1; i++) {
-                    if (A[i].CompareTo(A[i + 1]) > 0) {
-                        Swap(A, i, i + 1);
+                    if (array[i].CompareTo(array[i + 1]) > 0) {
+                        Swap(array, i, i + 1);
                         newn = i + 1;
                     }
                 }
                 n = newn;
             } while (n > 1);
             //  Return sorted list
-            return A;
+            return array;
+
         }
 
+        public static decimal[] BubbleSort(decimal[] array) {
+            int n = array.Length;
+            int newn;
+            do {
+                //  New length of list to sort
+                newn = 1;
+                for (int i = 0; i < n - 1; i++) {
+                    if (array[i].CompareTo(array[i + 1]) > 0) {
+                        Swap(array, i, i + 1);
+                        newn = i + 1;
+                    }
+                }
+                n = newn;
+            } while (n > 1);
+            //  Return sorted list
+            return array;
+        }
 
+        /// <summary>
+        /// Quicksort
+        /// best-case, average-case: O(n*log(n)), worst-case: O(n^2) 
+        /// </summary>
+        /// <returns>The sorted array.</returns>
+        /// <param name="array">Array.</param>
+        /// <param name="lo">Lo.</param>
+        /// <param name="hi">Hi.</param>
 
-
-        /* 
-         * Quicksort
-         * best-case:       O(n*log(n))
-         * average-case:    O(n*log(n))
-         * worst-case:      O(n^2)
-         */
-        
-        public static int[] QuickSort(int[] A, int lo, int hi) {
+        public static int[] QuickSort(int[] array, int lo, int hi) {
             if (lo < hi) {
-                int pi = Partition(A, lo, hi);
+                int pi = Partition(array, lo, hi);
                 //  Recursively sort smaller half of the list
-                QuickSort(A, lo, pi - 1);
+                QuickSort(array, lo, pi - 1);
                 //  Recursively sort higher half of the list
-                QuickSort(A, pi + 1, hi);
+                QuickSort(array, pi + 1, hi);
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static int Partition(int[] A, int low, int high) {
+        public static int Partition(int[] array, int low, int high) {
             //  Assign the last element to the pivot element
-            int pivot = A[high];
+            int pivot = array[high];
             //  Index of smaller element
             int lowIndex = (low - 1);
             //  Iterate from lowest to highest element
             for (int j = low; j <= high - 1; j++) {
 
                 //Swap elements if j-th element is smaller than the pivot element
-                if (A[j].CompareTo(pivot) < 0 || A[j].Equals(pivot)) {
+                if (array[j].CompareTo(pivot) < 0 || array[j].Equals(pivot)) {
                     lowIndex++;
-                    Swap(A, lowIndex, j);
+                    Swap(array, lowIndex, j);
                 }
             }
-            Swap(A, lowIndex + 1, high);
+            Swap(array, lowIndex + 1, high);
             return (lowIndex + 1);
         }
 
-        public static double[] QuickSort(double[] A, int lo, int hi) {
+        public static double[] QuickSort(double[] array, int lo, int hi) {
             if (lo < hi) {
-                int pi = Partition(A, lo, hi);
+                int pi = Partition(array, lo, hi);
                 //  Recursively sort smaller half of the list
-                QuickSort(A, lo, pi - 1);
+                QuickSort(array, lo, pi - 1);
                 //  Recursively sort higher half of the list
-                QuickSort(A, pi + 1, hi);
+                QuickSort(array, pi + 1, hi);
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static int Partition(double[] A, int low, int high) {
+        public static int Partition(double[] array, int low, int high) {
             //  Assign the last element to the pivot element
-            double pivot = A[high];
+            double pivot = array[high];
             //  Index of smaller element
             int lowIndex = (low - 1);
             //  Iterate from lowest to highest element
             for (int j = low; j <= high - 1; j++) {
 
                 //Swap elements if j-th element is smaller than the pivot element
-                if (A[j].CompareTo(pivot) < 0 || A[j].Equals(pivot)) {
+                if (array[j].CompareTo(pivot) < 0 || array[j].Equals(pivot)) {
                     lowIndex++;
-                    Swap(A, lowIndex, j);
+                    Swap(array, lowIndex, j);
                 }
             }
-            Swap(A, lowIndex + 1, high);
+            Swap(array, lowIndex + 1, high);
             return (lowIndex + 1);
         }
 
-
-
-        public static float[] QuickSort(float[] A, int lo, int hi) {
+        public static float[] QuickSort(float[] array, int lo, int hi) {
             if (lo < hi) {
-                int pi = Partition(A, lo, hi);
+                int pi = Partition(array, lo, hi);
                 //  Recursively sort smaller half of the list
-                QuickSort(A, lo, pi - 1);
+                QuickSort(array, lo, pi - 1);
                 //  Recursively sort higher half of the list
-                QuickSort(A, pi + 1, hi);
+                QuickSort(array, pi + 1, hi);
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static int Partition(float[] A, int low, int high) {
+        public static int Partition(float[] array, int low, int high) {
             //  Assign the last element to the pivot element
-            float pivot = A[high];
+            float pivot = array[high];
             //  Index of smaller element
             int lowIndex = (low - 1);
             //  Iterate from lowest to highest element
             for (int j = low; j <= high - 1; j++) {
 
                 //Swap elements if j-th element is smaller than the pivot element
-                if (A[j].CompareTo(pivot) < 0 || A[j].Equals(pivot)) {
+                if (array[j].CompareTo(pivot) < 0 || array[j].Equals(pivot)) {
                     lowIndex++;
-                    Swap(A, lowIndex, j);
+                    Swap(array, lowIndex, j);
                 }
             }
-            Swap(A, lowIndex + 1, high);
+            Swap(array, lowIndex + 1, high);
             return (lowIndex + 1);
         }
 
-
-        public static short[] QuickSort(short[] A, int lo, int hi) {
+        public static short[] QuickSort(short[] array, int lo, int hi) {
             if (lo < hi) {
-                int pi = Partition(A, lo, hi);
+                int pi = Partition(array, lo, hi);
                 //  Recursively sort smaller half of the list
-                QuickSort(A, lo, pi - 1);
+                QuickSort(array, lo, pi - 1);
                 //  Recursively sort higher half of the list
-                QuickSort(A, pi + 1, hi);
+                QuickSort(array, pi + 1, hi);
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static int Partition(short[] A, int low, int high) {
+        public static int Partition(short[] array, int low, int high) {
             //  Assign the last element to the pivot element
-            short pivot = A[high];
+            short pivot = array[high];
             //  Index of smaller element
             int lowIndex = (low - 1);
             //  Iterate from lowest to highest element
             for (int j = low; j <= high - 1; j++) {
 
                 //Swap elements if j-th element is smaller than the pivot element
-                if (A[j].CompareTo(pivot) < 0 || A[j].Equals(pivot)) {
+                if (array[j].CompareTo(pivot) < 0 || array[j].Equals(pivot)) {
                     lowIndex++;
-                    Swap(A, lowIndex, j);
+                    Swap(array, lowIndex, j);
                 }
             }
-            Swap(A, lowIndex + 1, high);
+            Swap(array, lowIndex + 1, high);
             return (lowIndex + 1);
         }
 
-
-
-        public static ushort[] QuickSort(ushort[] A, int lo, int hi) {
+        public static ushort[] QuickSort(ushort[] array, int lo, int hi) {
             if (lo < hi) {
-                int pi = Partition(A, lo, hi);
+                int pi = Partition(array, lo, hi);
                 //  Recursively sort smaller half of the list
-                QuickSort(A, lo, pi - 1);
+                QuickSort(array, lo, pi - 1);
                 //  Recursively sort higher half of the list
-                QuickSort(A, pi + 1, hi);
+                QuickSort(array, pi + 1, hi);
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static int Partition(ushort[] A, int low, int high) {
+        public static int Partition(ushort[] array, int low, int high) {
             //  Assign the last element to the pivot element
-            ushort pivot = A[high];
+            ushort pivot = array[high];
             //  Index of smaller element
             int lowIndex = (low - 1);
             //  Iterate from lowest to highest element
             for (int j = low; j <= high - 1; j++) {
 
                 //Swap elements if j-th element is smaller than the pivot element
-                if (A[j].CompareTo(pivot) < 0 || A[j].Equals(pivot)) {
+                if (array[j].CompareTo(pivot) < 0 || array[j].Equals(pivot)) {
                     lowIndex++;
-                    Swap(A, lowIndex, j);
+                    Swap(array, lowIndex, j);
                 }
             }
-            Swap(A, lowIndex + 1, high);
+            Swap(array, lowIndex + 1, high);
             return (lowIndex + 1);
         }
 
-
-        public static byte[] QuickSort(byte[] A, int lo, int hi) {
+        public static byte[] QuickSort(byte[] array, int lo, int hi) {
             if (lo < hi) {
-                int pi = Partition(A, lo, hi);
+                int pi = Partition(array, lo, hi);
                 //  Recursively sort smaller half of the list
-                QuickSort(A, lo, pi - 1);
+                QuickSort(array, lo, pi - 1);
                 //  Recursively sort higher half of the list
-                QuickSort(A, pi + 1, hi);
+                QuickSort(array, pi + 1, hi);
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static int Partition(byte[] A, int low, int high) {
+        public static int Partition(byte[] array, int low, int high) {
             //  Assign the last element to the pivot element
-            byte pivot = A[high];
+            byte pivot = array[high];
             //  Index of smaller element
             int lowIndex = (low - 1);
             //  Iterate from lowest to highest element
             for (int j = low; j <= high - 1; j++) {
 
                 //Swap elements if j-th element is smaller than the pivot element
-                if (A[j].CompareTo(pivot) < 0 || A[j].Equals(pivot)) {
+                if (array[j].CompareTo(pivot) < 0 || array[j].Equals(pivot)) {
                     lowIndex++;
-                    Swap(A, lowIndex, j);
+                    Swap(array, lowIndex, j);
                 }
             }
-            Swap(A, lowIndex + 1, high);
+            Swap(array, lowIndex + 1, high);
             return (lowIndex + 1);
         }
 
-
-        public static sbyte[] QuickSort(sbyte[] A, int lo, int hi) {
+        public static sbyte[] QuickSort(sbyte[] array, int lo, int hi) {
             if (lo < hi) {
-                int pi = Partition(A, lo, hi);
+                int pi = Partition(array, lo, hi);
                 //  Recursively sort smaller half of the list
-                QuickSort(A, lo, pi - 1);
+                QuickSort(array, lo, pi - 1);
                 //  Recursively sort higher half of the list
-                QuickSort(A, pi + 1, hi);
+                QuickSort(array, pi + 1, hi);
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static int Partition(sbyte[] A, int low, int high) {
+        public static int Partition(sbyte[] array, int low, int high) {
             //  Assign the last element to the pivot element
-            sbyte pivot = A[high];
+            sbyte pivot = array[high];
             //  Index of smaller element
             int lowIndex = (low - 1);
             //  Iterate from lowest to highest element
             for (int j = low; j <= high - 1; j++) {
 
                 //Swap elements if j-th element is smaller than the pivot element
-                if (A[j].CompareTo(pivot) < 0 || A[j].Equals(pivot)) {
+                if (array[j].CompareTo(pivot) < 0 || array[j].Equals(pivot)) {
                     lowIndex++;
-                    Swap(A, lowIndex, j);
+                    Swap(array, lowIndex, j);
                 }
             }
-            Swap(A, lowIndex + 1, high);
+            Swap(array, lowIndex + 1, high);
             return (lowIndex + 1);
         }
 
-
-        public static uint[] QuickSort(uint[] A, int lo, int hi) {
+        public static uint[] QuickSort(uint[] array, int lo, int hi) {
             if (lo < hi) {
-                int pi = Partition(A, lo, hi);
+                int pi = Partition(array, lo, hi);
                 //  Recursively sort smaller half of the list
-                QuickSort(A, lo, pi - 1);
+                QuickSort(array, lo, pi - 1);
                 //  Recursively sort higher half of the list
-                QuickSort(A, pi + 1, hi);
+                QuickSort(array, pi + 1, hi);
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static int Partition(uint[] A, int low, int high) {
+        public static int Partition(uint[] array, int low, int high) {
             //  Assign the last element to the pivot element
-            uint pivot = A[high];
+            uint pivot = array[high];
             //  Index of smaller element
             int lowIndex = (low - 1);
             //  Iterate from lowest to highest element
             for (int j = low; j <= high - 1; j++) {
 
                 //Swap elements if j-th element is smaller than the pivot element
-                if (A[j].CompareTo(pivot) < 0 || A[j].Equals(pivot)) {
+                if (array[j].CompareTo(pivot) < 0 || array[j].Equals(pivot)) {
                     lowIndex++;
-                    Swap(A, lowIndex, j);
+                    Swap(array, lowIndex, j);
                 }
             }
-            Swap(A, lowIndex + 1, high);
+            Swap(array, lowIndex + 1, high);
             return (lowIndex + 1);
         }
 
-
-        public static long[] QuickSort(long[] A, int lo, int hi) {
+        public static long[] QuickSort(long[] array, int lo, int hi) {
             if (lo < hi) {
-                int pi = Partition(A, lo, hi);
+                int pi = Partition(array, lo, hi);
                 //  Recursively sort smaller half of the list
-                QuickSort(A, lo, pi - 1);
+                QuickSort(array, lo, pi - 1);
                 //  Recursively sort higher half of the list
-                QuickSort(A, pi + 1, hi);
+                QuickSort(array, pi + 1, hi);
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static int Partition(long[] A, int low, int high) {
+        public static int Partition(long[] array, int low, int high) {
             //  Assign the last element to the pivot element
-            long pivot = A[high];
+            long pivot = array[high];
             //  Index of smaller element
             int lowIndex = (low - 1);
             //  Iterate from lowest to highest element
             for (int j = low; j <= high - 1; j++) {
 
                 //Swap elements if j-th element is smaller than the pivot element
-                if (A[j].CompareTo(pivot) < 0 || A[j].Equals(pivot)) {
+                if (array[j].CompareTo(pivot) < 0 || array[j].Equals(pivot)) {
                     lowIndex++;
-                    Swap(A, lowIndex, j);
+                    Swap(array, lowIndex, j);
                 }
             }
-            Swap(A, lowIndex + 1, high);
+            Swap(array, lowIndex + 1, high);
             return (lowIndex + 1);
         }
 
-
-        public static ulong[] QuickSort(ulong[] A, int lo, int hi) {
+        public static ulong[] QuickSort(ulong[] array, int lo, int hi) {
             if (lo < hi) {
-                int pi = Partition(A, lo, hi);
+                int pi = Partition(array, lo, hi);
                 //  Recursively sort smaller half of the list
-                QuickSort(A, lo, pi - 1);
+                QuickSort(array, lo, pi - 1);
                 //  Recursively sort higher half of the list
-                QuickSort(A, pi + 1, hi);
+                QuickSort(array, pi + 1, hi);
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static int Partition(ulong[] A, int low, int high) {
+        public static int Partition(ulong[] array, int low, int high) {
             //  Assign the last element to the pivot element
-            ulong pivot = A[high];
+            ulong pivot = array[high];
             //  Index of smaller element
             int lowIndex = (low - 1);
             //  Iterate from lowest to highest element
             for (int j = low; j <= high - 1; j++) {
 
                 //Swap elements if j-th element is smaller than the pivot element
-                if (A[j].CompareTo(pivot) < 0 || A[j].Equals(pivot)) {
+                if (array[j].CompareTo(pivot) < 0 || array[j].Equals(pivot)) {
                     lowIndex++;
-                    Swap(A, lowIndex, j);
+                    Swap(array, lowIndex, j);
                 }
             }
-            Swap(A, lowIndex + 1, high);
+            Swap(array, lowIndex + 1, high);
             return (lowIndex + 1);
         }
 
-
-        public static decimal[] QuickSort(decimal[] A, int lo, int hi) {
+        public static decimal[] QuickSort(decimal[] array, int lo, int hi) {
             if (lo < hi) {
-                int pi = Partition(A, lo, hi);
+                int pi = Partition(array, lo, hi);
                 //  Recursively sort smaller half of the list
-                QuickSort(A, lo, pi - 1);
+                QuickSort(array, lo, pi - 1);
                 //  Recursively sort higher half of the list
-                QuickSort(A, pi + 1, hi);
+                QuickSort(array, pi + 1, hi);
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static int Partition(decimal[] A, int low, int high) {
+        public static int Partition(decimal[] array, int low, int high) {
             //  Assign the last element to the pivot element
-            decimal pivot = A[high];
+            decimal pivot = array[high];
             //  Index of smaller element
             int lowIndex = (low - 1);
             //  Iterate from lowest to highest element
             for (int j = low; j <= high - 1; j++) {
 
                 //Swap elements if j-th element is smaller than the pivot element
-                if (A[j].CompareTo(pivot) < 0 || A[j].Equals(pivot)) {
+                if (array[j].CompareTo(pivot) < 0 || array[j].Equals(pivot)) {
                     lowIndex++;
-                    Swap(A, lowIndex, j);
+                    Swap(array, lowIndex, j);
                 }
             }
-            Swap(A, lowIndex + 1, high);
+            Swap(array, lowIndex + 1, high);
             return (lowIndex + 1);
         }
 
-
-
-
-
-        /* 
-         * Insertionsort
-         * best-case:       O(n)
-         * average-case:    O(n^2)
-         * worst-case:      O(n^2)
-         */
-     
-        public static int[] InsertionSort(int[] A) {
-            int n = A.Length;
+         /// <summary>
+         /// Insertionsort
+         /// best-case: O(n) average-case, worst-case: O(n^2)
+         /// </summary>
+         /// <returns>The sort.</returns>
+         /// <param name="array">Array.</param>
+        public static int[] InsertionSort(int[] array) {
+            int n = array.Length;
             //  value to be sorted 
             int value;
             //  Insertion index of 'value'
             int j;
             //  Iterate from 2nd to last element
             for (int i = 1; i < n; i++) {
-                value = A[i];
+                value = array[i];
                 j = i;
-                /* If left value of A[j] is higher than current value,
-                 * move A[j-1] one the left
+                /* If left value of array[j] is higher than current value,
+                 * move array[j-1] one the left
                  */
-                while (j > 0 && (A[j - 1].CompareTo(value) > 0)) {
-                    A[j] = A[j - 1];
+                while (j > 0 && (array[j - 1].CompareTo(value) > 0)) {
+                    array[j] = array[j - 1];
                     j -= 1;
                 }
-                A[j] = value;
+                array[j] = value;
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-
-        public static double[] InsertionSort(double[] A) {
-            int n = A.Length;
+        public static double[] InsertionSort(double[] array) {
+            int n = array.Length;
             //  value to be sorted 
             double value;
             //  Insertion index of 'value'
             int j;
             //  Iterate from 2nd to last element
             for (int i = 1; i < n; i++) {
-                value = A[i];
+                value = array[i];
                 j = i;
-                /* If left value of A[j] is higher than current value,
-                 * move A[j-1] one the left
+                /* If left value of array[j] is higher than current value,
+                 * move array[j-1] one the left
                  */
-                while (j > 0 && (A[j - 1].CompareTo(value) > 0)) {
-                    A[j] = A[j - 1];
+                while (j > 0 && (array[j - 1].CompareTo(value) > 0)) {
+                    array[j] = array[j - 1];
                     j -= 1;
                 }
-                A[j] = value;
+                array[j] = value;
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static float[] InsertionSort(float[] A) {
-            int n = A.Length;
+        public static float[] InsertionSort(float[] array) {
+            int n = array.Length;
             //  value to be sorted 
             float value;
             //  Insertion index of 'value'
             int j;
             //  Iterate from 2nd to last element
             for (int i = 1; i < n; i++) {
-                value = A[i];
+                value = array[i];
                 j = i;
-                /* If left value of A[j] is higher than current value,
-                 * move A[j-1] one the left
+                /* If left value of array[j] is higher than current value,
+                 * move array[j-1] one the left
                  */
-                while (j > 0 && (A[j - 1].CompareTo(value) > 0)) {
-                    A[j] = A[j - 1];
+                while (j > 0 && (array[j - 1].CompareTo(value) > 0)) {
+                    array[j] = array[j - 1];
                     j -= 1;
                 }
-                A[j] = value;
+                array[j] = value;
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static sbyte[] InsertionSort(sbyte[] A) {
-            int n = A.Length;
+        public static sbyte[] InsertionSort(sbyte[] array) {
+            int n = array.Length;
             //  value to be sorted 
             sbyte value;
             //  Insertion index of 'value'
             int j;
             //  Iterate from 2nd to last element
             for (int i = 1; i < n; i++) {
-                value = A[i];
+                value = array[i];
                 j = i;
-                /* If left value of A[j] is higher than current value,
-                 * move A[j-1] one the left
+                /* If left value of array[j] is higher than current value,
+                 * move array[j-1] one the left
                  */
-                while (j > 0 && (A[j - 1].CompareTo(value) > 0)) {
-                    A[j] = A[j - 1];
+                while (j > 0 && (array[j - 1].CompareTo(value) > 0)) {
+                    array[j] = array[j - 1];
                     j -= 1;
                 }
-                A[j] = value;
+                array[j] = value;
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static short[] InsertionSort(short[] A) {
-            int n = A.Length;
+        public static short[] InsertionSort(short[] array) {
+            int n = array.Length;
             //  value to be sorted 
             short value;
             //  Insertion index of 'value'
             int j;
             //  Iterate from 2nd to last element
             for (int i = 1; i < n; i++) {
-                value = A[i];
+                value = array[i];
                 j = i;
-                /* If left value of A[j] is higher than current value,
-                 * move A[j-1] one the left
+                /* If left value of array[j] is higher than current value,
+                 * move array[j-1] one the left
                  */
-                while (j > 0 && (A[j - 1].CompareTo(value) > 0)) {
-                    A[j] = A[j - 1];
+                while (j > 0 && (array[j - 1].CompareTo(value) > 0)) {
+                    array[j] = array[j - 1];
                     j -= 1;
                 }
-                A[j] = value;
+                array[j] = value;
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static ushort[] InsertionSort(ushort[] A) {
-            int n = A.Length;
+        public static ushort[] InsertionSort(ushort[] array) {
+            int n = array.Length;
             //  value to be sorted 
             ushort value;
             //  Insertion index of 'value'
             int j;
             //  Iterate from 2nd to last element
             for (int i = 1; i < n; i++) {
-                value = A[i];
+                value = array[i];
                 j = i;
-                /* If left value of A[j] is higher than current value,
-                 * move A[j-1] one the left
+                /* If left value of array[j] is higher than current value,
+                 * move array[j-1] one the left
                  */
-                while (j > 0 && (A[j - 1].CompareTo(value) > 0)) {
-                    A[j] = A[j - 1];
+                while (j > 0 && (array[j - 1].CompareTo(value) > 0)) {
+                    array[j] = array[j - 1];
                     j -= 1;
                 }
-                A[j] = value;
+                array[j] = value;
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static byte[] InsertionSort(byte[] A) {
-            int n = A.Length;
+        public static byte[] InsertionSort(byte[] array) {
+            int n = array.Length;
             //  value to be sorted 
             byte value;
             //  Insertion index of 'value'
             int j;
             //  Iterate from 2nd to last element
             for (int i = 1; i < n; i++) {
-                value = A[i];
+                value = array[i];
                 j = i;
-                /* If left value of A[j] is higher than current value,
-                 * move A[j-1] one the left
+                /* If left value of array[j] is higher than current value,
+                 * move array[j-1] one the left
                  */
-                while (j > 0 && (A[j - 1].CompareTo(value) > 0)) {
-                    A[j] = A[j - 1];
+                while (j > 0 && (array[j - 1].CompareTo(value) > 0)) {
+                    array[j] = array[j - 1];
                     j -= 1;
                 }
-                A[j] = value;
+                array[j] = value;
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static long[] InsertionSort(long[] A) {
-            int n = A.Length;
+        public static long[] InsertionSort(long[] array) {
+            int n = array.Length;
             //  value to be sorted 
             long value;
             //  Insertion index of 'value'
             int j;
             //  Iterate from 2nd to last element
             for (int i = 1; i < n; i++) {
-                value = A[i];
+                value = array[i];
                 j = i;
-                /* If left value of A[j] is higher than current value,
-                 * move A[j-1] one the left
+                /* If left value of array[j] is higher than current value,
+                 * move array[j-1] one the left
                  */
-                while (j > 0 && (A[j - 1].CompareTo(value) > 0)) {
-                    A[j] = A[j - 1];
+                while (j > 0 && (array[j - 1].CompareTo(value) > 0)) {
+                    array[j] = array[j - 1];
                     j -= 1;
                 }
-                A[j] = value;
+                array[j] = value;
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static uint[] InsertionSort(uint[] A) {
-            int n = A.Length;
+        public static uint[] InsertionSort(uint[] array) {
+            int n = array.Length;
             //  value to be sorted 
             uint value;
             //  Insertion index of 'value'
             int j;
             //  Iterate from 2nd to last element
             for (int i = 1; i < n; i++) {
-                value = A[i];
+                value = array[i];
                 j = i;
-                /* If left value of A[j] is higher than current value,
-                 * move A[j-1] one the left
+                /* If left value of array[j] is higher than current value,
+                 * move array[j-1] one the left
                  */
-                while (j > 0 && (A[j - 1].CompareTo(value) > 0)) {
-                    A[j] = A[j - 1];
+                while (j > 0 && (array[j - 1].CompareTo(value) > 0)) {
+                    array[j] = array[j - 1];
                     j -= 1;
                 }
-                A[j] = value;
+                array[j] = value;
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static ulong[] InsertionSort(ulong[] A) {
-            int n = A.Length;
+        public static ulong[] InsertionSort(ulong[] array) {
+            int n = array.Length;
             //  value to be sorted 
             ulong value;
             //  Insertion index of 'value'
             int j;
             //  Iterate from 2nd to last element
             for (int i = 1; i < n; i++) {
-                value = A[i];
+                value = array[i];
                 j = i;
-                /* If left value of A[j] is higher than current value,
-                 * move A[j-1] one the left
+                /* If left value of array[j] is higher than current value,
+                 * move array[j-1] one the left
                  */
-                while (j > 0 && (A[j - 1].CompareTo(value) > 0)) {
-                    A[j] = A[j - 1];
+                while (j > 0 && (array[j - 1].CompareTo(value) > 0)) {
+                    array[j] = array[j - 1];
                     j -= 1;
                 }
-                A[j] = value;
+                array[j] = value;
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
-        public static decimal[] InsertionSort(decimal[] A) {
-            int n = A.Length;
+        public static decimal[] InsertionSort(decimal[] array) {
+            int n = array.Length;
             //  value to be sorted 
             decimal value;
             //  Insertion index of 'value'
             int j;
             //  Iterate from 2nd to last element
             for (int i = 1; i < n; i++) {
-                value = A[i];
+                value = array[i];
                 j = i;
-                /* If left value of A[j] is higher than current value,
-                 * move A[j-1] one the left
+                /* If left value of array[j] is higher than current value,
+                 * move array[j-1] one the left
                  */
-                while (j > 0 && (A[j - 1].CompareTo(value) > 0)) {
-                    A[j] = A[j - 1];
+                while (j > 0 && (array[j - 1].CompareTo(value) > 0)) {
+                    array[j] = array[j - 1];
                     j -= 1;
                 }
-                A[j] = value;
+                array[j] = value;
             }
             //  Return sorted list
-            return A;
+            return array;
         }
 
+        /// <summary>
+        /// Combsort
+        /// best-case, average-case : O(n*(logn)), worst-case : O(n^2)
+        /// </summary>
+        /// <returns>The sorted array.</returns>
+        /// <param name="array">Array.</param>
+        public static int[] CombSort(int[] array) {
 
+            int stepLength = array.Length;
+            bool swapped;
+            do {
+                swapped = false;
+                for (int i = 0; i < (array.Length - stepLength); i++) {
+                    if (array[i].CompareTo(array[i + stepLength]) > 0) {
+                        Swap(array, i, i + stepLength);
+                        swapped = true;
+                    }
+                }
+                if (stepLength > 1) {
+                    stepLength = (int)Math.Floor(stepLength / 1.3);
+                }
 
-        /* 
-        * Combsort
-        * best-case:       O(n*log(n))
-        * average-case:    O(n*log(n))
-        * worst-case:      O(n^2)
-        */
+            } while (swapped == true || stepLength > 1);
+            return array;
+        }
+
+        public static uint[] CombSort(uint[] array) {
+
+            int stepLength = array.Length;
+            bool swapped;
+            do {
+                swapped = false;
+                for (int i = 0; i < (array.Length - stepLength); i++) {
+                    if (array[i].CompareTo(array[i + stepLength]) > 0) {
+                        Swap(array, i, i + stepLength);
+                        swapped = true;
+                    }
+                }
+                if (stepLength > 1) {
+                    stepLength = (int)Math.Floor(stepLength / 1.3);
+                }
+
+            } while (swapped == true || stepLength > 1);
+            return array;
+        }
+
+        public static double[] CombSort(double[] array) {
+
+            int stepLength = array.Length;
+            bool swapped;
+            do {
+                swapped = false;
+                for (int i = 0; i < (array.Length - stepLength); i++) {
+                    if (array[i].CompareTo(array[i + stepLength]) > 0) {
+                        Swap(array, i, i + stepLength);
+                        swapped = true;
+                    }
+                }
+                if (stepLength > 1) {
+                    stepLength = (int)Math.Floor(stepLength / 1.3);
+                }
+
+            } while (swapped == true || stepLength > 1);
+            return array;
+        }
+        public static float[] CombSort(float[] array) {
+
+            int stepLength = array.Length;
+            bool swapped;
+            do {
+                swapped = false;
+                for (int i = 0; i < (array.Length - stepLength); i++) {
+                    if (array[i].CompareTo(array[i + stepLength]) > 0) {
+                        Swap(array, i, i + stepLength);
+                        swapped = true;
+                    }
+                }
+                if (stepLength > 1) {
+                    stepLength = (int)Math.Floor(stepLength / 1.3);
+                }
+
+            } while (swapped == true || stepLength > 1);
+            return array;
+        }
+
+        public static decimal[] CombSort(decimal[] array) {
+
+            int stepLength = array.Length;
+            bool swapped;
+            do {
+                swapped = false;
+                for (int i = 0; i < (array.Length - stepLength); i++) {
+                    if (array[i].CompareTo(array[i + stepLength]) > 0) {
+                        Swap(array, i, i + stepLength);
+                        swapped = true;
+                    }
+                }
+                if (stepLength > 1) {
+                    stepLength = (int)Math.Floor(stepLength / 1.3);
+                }
+
+            } while (swapped == true || stepLength > 1);
+            return array;
+        }
+
+        public static sbyte[] CombSort(sbyte[] array) {
+
+            int stepLength = array.Length;
+            bool swapped;
+            do {
+                swapped = false;
+                for (int i = 0; i < (array.Length - stepLength); i++) {
+                    if (array[i].CompareTo(array[i + stepLength]) > 0) {
+                        Swap(array, i, i + stepLength);
+                        swapped = true;
+                    }
+                }
+                if (stepLength > 1) {
+                    stepLength = (int)Math.Floor(stepLength / 1.3);
+                }
+
+            } while (swapped == true || stepLength > 1);
+            return array;
+        }
+
+        public static short[] CombSort(short[] array) {
+
+            int stepLength = array.Length;
+            bool swapped;
+            do {
+                swapped = false;
+                for (int i = 0; i < (array.Length - stepLength); i++) {
+                    if (array[i].CompareTo(array[i + stepLength]) > 0) {
+                        Swap(array, i, i + stepLength);
+                        swapped = true;
+                    }
+                }
+                if (stepLength > 1) {
+                    stepLength = (int)Math.Floor(stepLength / 1.3);
+                }
+
+            } while (swapped == true || stepLength > 1);
+            return array;
+        }
+
+        public static ushort[] CombSort(ushort[] array) {
+
+            int stepLength = array.Length;
+            bool swapped;
+            do {
+                swapped = false;
+                for (int i = 0; i < (array.Length - stepLength); i++) {
+                    if (array[i].CompareTo(array[i + stepLength]) > 0) {
+                        Swap(array, i, i + stepLength);
+                        swapped = true;
+                    }
+                }
+                if (stepLength > 1) {
+                    stepLength = (int)Math.Floor(stepLength / 1.3);
+                }
+
+            } while (swapped == true || stepLength > 1);
+            return array;
+        }
+
+        public static byte[] CombSort(byte[] array) {
+
+            int stepLength = array.Length;
+            bool swapped;
+            do {
+                swapped = false;
+                for (int i = 0; i < (array.Length - stepLength); i++) {
+                    if (array[i].CompareTo(array[i + stepLength]) > 0) {
+                        Swap(array, i, i + stepLength);
+                        swapped = true;
+                    }
+                }
+                if (stepLength > 1) {
+                    stepLength = (int)Math.Floor(stepLength / 1.3);
+                }
+
+            } while (swapped == true || stepLength > 1);
+            return array;
+        }
+
+        public static long[] CombSort(long[] array) {
+
+            int stepLength = array.Length;
+            bool swapped;
+            do {
+                swapped = false;
+                for (int i = 0; i < (array.Length - stepLength); i++) {
+                    if (array[i].CompareTo(array[i + stepLength]) > 0) {
+                        Swap(array, i, i + stepLength);
+                        swapped = true;
+                    }
+                }
+                if (stepLength > 1) {
+                    stepLength = (int)Math.Floor(stepLength / 1.3);
+                }
+
+            } while (swapped == true || stepLength > 1);
+            return array;
+        }
+
+        public static ulong[] CombSort(ulong[] array) {
+
+            int stepLength = array.Length;
+            bool swapped;
+            do {
+                swapped = false;
+                for (int i = 0; i < (array.Length - stepLength); i++) {
+                    if (array[i].CompareTo(array[i + stepLength]) > 0) {
+                        Swap(array, i, i + stepLength);
+                        swapped = true;
+                    }
+                }
+                if (stepLength > 1) {
+                    stepLength = (int)Math.Floor(stepLength / 1.3);
+                }
+
+            } while (swapped == true || stepLength > 1);
+            return array;
+        }
        
+        /// <summary>
+        /// Introsort
+        /// best-case, average-case, worst-case: O(n*log(n))
+        /// </summary>
+        /// <returns>The sorted Array.</returns>
+        /// <param name="array">Array.</param>
+        public static int[] IntroSort(int[] array) {
 
-        public static int[] CombSort(int[] A) {
-
-            int stepLength = A.Length;
-            bool swapped;
-            do {
-                swapped = false;
-                for (int i = 0; i < (A.Length - stepLength); i++) {
-                    if (A[i].CompareTo(A[i + stepLength]) > 0) {
-                        Swap(A, i, i + stepLength);
-                        swapped = true;
-                    }
-                }
-                if (stepLength > 1) {
-                    stepLength = (int)Math.Floor(stepLength / 1.3);
-                }
-
-            } while (swapped == true || stepLength > 1);
-            return A;
-        }
-
-        public static uint[] CombSort(uint[] A) {
-
-            int stepLength = A.Length;
-            bool swapped;
-            do {
-                swapped = false;
-                for (int i = 0; i < (A.Length - stepLength); i++) {
-                    if (A[i].CompareTo(A[i + stepLength]) > 0) {
-                        Swap(A, i, i + stepLength);
-                        swapped = true;
-                    }
-                }
-                if (stepLength > 1) {
-                    stepLength = (int)Math.Floor(stepLength / 1.3);
-                }
-
-            } while (swapped == true || stepLength > 1);
-            return A;
-        }
-
-        public static double[] CombSort(double[] A) {
-
-            int stepLength = A.Length;
-            bool swapped;
-            do {
-                swapped = false;
-                for (int i = 0; i < (A.Length - stepLength); i++) {
-                    if (A[i].CompareTo(A[i + stepLength]) > 0) {
-                        Swap(A, i, i + stepLength);
-                        swapped = true;
-                    }
-                }
-                if (stepLength > 1) {
-                    stepLength = (int)Math.Floor(stepLength / 1.3);
-                }
-
-            } while (swapped == true || stepLength > 1);
-            return A;
-        }
-        public static float[] CombSort(float[] A) {
-
-            int stepLength = A.Length;
-            bool swapped;
-            do {
-                swapped = false;
-                for (int i = 0; i < (A.Length - stepLength); i++) {
-                    if (A[i].CompareTo(A[i + stepLength]) > 0) {
-                        Swap(A, i, i + stepLength);
-                        swapped = true;
-                    }
-                }
-                if (stepLength > 1) {
-                    stepLength = (int)Math.Floor(stepLength / 1.3);
-                }
-
-            } while (swapped == true || stepLength > 1);
-            return A;
-        }
-
-        public static decimal[] CombSort(decimal[] A) {
-
-            int stepLength = A.Length;
-            bool swapped;
-            do {
-                swapped = false;
-                for (int i = 0; i < (A.Length - stepLength); i++) {
-                    if (A[i].CompareTo(A[i + stepLength]) > 0) {
-                        Swap(A, i, i + stepLength);
-                        swapped = true;
-                    }
-                }
-                if (stepLength > 1) {
-                    stepLength = (int)Math.Floor(stepLength / 1.3);
-                }
-
-            } while (swapped == true || stepLength > 1);
-            return A;
-        }
-
-        public static sbyte[] CombSort(sbyte[] A) {
-
-            int stepLength = A.Length;
-            bool swapped;
-            do {
-                swapped = false;
-                for (int i = 0; i < (A.Length - stepLength); i++) {
-                    if (A[i].CompareTo(A[i + stepLength]) > 0) {
-                        Swap(A, i, i + stepLength);
-                        swapped = true;
-                    }
-                }
-                if (stepLength > 1) {
-                    stepLength = (int)Math.Floor(stepLength / 1.3);
-                }
-
-            } while (swapped == true || stepLength > 1);
-            return A;
-        }
-
-        public static short[] CombSort(short[] A) {
-
-            int stepLength = A.Length;
-            bool swapped;
-            do {
-                swapped = false;
-                for (int i = 0; i < (A.Length - stepLength); i++) {
-                    if (A[i].CompareTo(A[i + stepLength]) > 0) {
-                        Swap(A, i, i + stepLength);
-                        swapped = true;
-                    }
-                }
-                if (stepLength > 1) {
-                    stepLength = (int)Math.Floor(stepLength / 1.3);
-                }
-
-            } while (swapped == true || stepLength > 1);
-            return A;
-        }
-
-        public static ushort[] CombSort(ushort[] A) {
-
-            int stepLength = A.Length;
-            bool swapped;
-            do {
-                swapped = false;
-                for (int i = 0; i < (A.Length - stepLength); i++) {
-                    if (A[i].CompareTo(A[i + stepLength]) > 0) {
-                        Swap(A, i, i + stepLength);
-                        swapped = true;
-                    }
-                }
-                if (stepLength > 1) {
-                    stepLength = (int)Math.Floor(stepLength / 1.3);
-                }
-
-            } while (swapped == true || stepLength > 1);
-            return A;
-        }
-
-        public static byte[] CombSort(byte[] A) {
-
-            int stepLength = A.Length;
-            bool swapped;
-            do {
-                swapped = false;
-                for (int i = 0; i < (A.Length - stepLength); i++) {
-                    if (A[i].CompareTo(A[i + stepLength]) > 0) {
-                        Swap(A, i, i + stepLength);
-                        swapped = true;
-                    }
-                }
-                if (stepLength > 1) {
-                    stepLength = (int)Math.Floor(stepLength / 1.3);
-                }
-
-            } while (swapped == true || stepLength > 1);
-            return A;
-        }
-
-        public static long[] CombSort(long[] A) {
-
-            int stepLength = A.Length;
-            bool swapped;
-            do {
-                swapped = false;
-                for (int i = 0; i < (A.Length - stepLength); i++) {
-                    if (A[i].CompareTo(A[i + stepLength]) > 0) {
-                        Swap(A, i, i + stepLength);
-                        swapped = true;
-                    }
-                }
-                if (stepLength > 1) {
-                    stepLength = (int)Math.Floor(stepLength / 1.3);
-                }
-
-            } while (swapped == true || stepLength > 1);
-            return A;
-        }
-
-
-        public static ulong[] CombSort(ulong[] A) {
-
-            int stepLength = A.Length;
-            bool swapped;
-            do {
-                swapped = false;
-                for (int i = 0; i < (A.Length - stepLength); i++) {
-                    if (A[i].CompareTo(A[i + stepLength]) > 0) {
-                        Swap(A, i, i + stepLength);
-                        swapped = true;
-                    }
-                }
-                if (stepLength > 1) {
-                    stepLength = (int)Math.Floor(stepLength / 1.3);
-                }
-
-            } while (swapped == true || stepLength > 1);
-            return A;
-        }
-
-        /* 
-        * Introsort
-        * best-case:       O(n*log(n))
-        * average-case:    O(n*log(n))
-        * worst-case:      O(n*log(n))
-        */
-
-
-
-        public static int[] IntroSort(int[] A) {
-
-            int p = Partition(A, 0, A.Length - 1);
+            int p = Partition(array, 0, array.Length - 1);
             //  Use Insertionsort for small lists
             if (p < 16) {
-                A = InsertionSort(A);
+                array = InsertionSort(array);
             } else {
-                A = p > (2 * Math.Log(A.Length)) ? HeapSort(A) : QuickSort(A, 0, A.Length - 1);
+                array = p > (2 * Math.Log(array.Length)) ? HeapSort(array) : QuickSort(array, 0, array.Length - 1);
             }
-            return A;
+            return array;
         }
 
-        public static uint[] IntroSort(uint[] A) {
+        public static uint[] IntroSort(uint[] array) {
 
-            int p = Partition(A, 0, A.Length - 1);
+            int p = Partition(array, 0, array.Length - 1);
             //  Use Insertionsort for small lists
             if (p < 16) {
-                A = InsertionSort(A);
+                array = InsertionSort(array);
             } else {
-                A = p > (2 * Math.Log(A.Length)) ? HeapSort(A) : QuickSort(A, 0, A.Length - 1);
+                array = p > (2 * Math.Log(array.Length)) ? HeapSort(array) : QuickSort(array, 0, array.Length - 1);
             }
-            return A;
+            return array;
         }
 
-        public static double[] IntroSort(double[] A) {
+        public static double[] IntroSort(double[] array) {
 
 
-            int p = Partition(A, 0, A.Length - 1);
+            int p = Partition(array, 0, array.Length - 1);
             //  Use Insertionsort for small lists
             if (p < 16) {
-                A = InsertionSort(A);
+                array = InsertionSort(array);
             } else {
-                A = p > (2 * Math.Log(A.Length)) ? HeapSort(A) : QuickSort(A, 0, A.Length - 1);
+                array = p > (2 * Math.Log(array.Length)) ? HeapSort(array) : QuickSort(array, 0, array.Length - 1);
             }
-            return A;
+            return array;
         }
 
-        public static float[] IntroSort(float[] A) {
+        public static float[] IntroSort(float[] array) {
 
 
-            int p = Partition(A, 0, A.Length - 1);
+            int p = Partition(array, 0, array.Length - 1);
             //  Use Insertionsort for small lists
             if (p < 16) {
-                A = InsertionSort(A);
+                array = InsertionSort(array);
             } else {
-                A = p > (2 * Math.Log(A.Length)) ? HeapSort(A) : QuickSort(A, 0, A.Length - 1);
+                array = p > (2 * Math.Log(array.Length)) ? HeapSort(array) : QuickSort(array, 0, array.Length - 1);
             }
-            return A;
+            return array;
         }
 
-        public static short[] IntroSort(short[] A) {
+        public static short[] IntroSort(short[] array) {
 
 
-            int p = Partition(A, 0, A.Length - 1);
+            int p = Partition(array, 0, array.Length - 1);
             //  Use Insertionsort for small lists
             if (p < 16) {
-                A = InsertionSort(A);
+                array = InsertionSort(array);
             } else {
-                A = p > (2 * Math.Log(A.Length)) ? HeapSort(A) : QuickSort(A, 0, A.Length - 1);
+                array = p > (2 * Math.Log(array.Length)) ? HeapSort(array) : QuickSort(array, 0, array.Length - 1);
             }
-            return A;
+            return array;
         }
 
-        public static ushort[] IntroSort(ushort[] A) {
+        public static ushort[] IntroSort(ushort[] array) {
 
 
-            int p = Partition(A, 0, A.Length - 1);
+            int p = Partition(array, 0, array.Length - 1);
             //  Use Insertionsort for small lists
             if (p < 16) {
-                A = InsertionSort(A);
+                array = InsertionSort(array);
             } else {
-                A = p > (2 * Math.Log(A.Length)) ? HeapSort(A) : QuickSort(A, 0, A.Length - 1);
+                array = p > (2 * Math.Log(array.Length)) ? HeapSort(array) : QuickSort(array, 0, array.Length - 1);
             }
-            return A;
+            return array;
         }
 
-        public static byte[] IntroSort(byte[] A) {
+        public static byte[] IntroSort(byte[] array) {
 
 
-            int p = Partition(A, 0, A.Length - 1);
+            int p = Partition(array, 0, array.Length - 1);
             //  Use Insertionsort for small lists
             if (p < 16) {
-                A = InsertionSort(A);
+                array = InsertionSort(array);
             } else {
-                A = p > (2 * Math.Log(A.Length)) ? HeapSort(A) : QuickSort(A, 0, A.Length - 1);
+                array = p > (2 * Math.Log(array.Length)) ? HeapSort(array) : QuickSort(array, 0, array.Length - 1);
             }
-            return A;
+            return array;
         }
 
-        public static sbyte[] IntroSort(sbyte[] A) {
+        public static sbyte[] IntroSort(sbyte[] array) {
 
 
-            int p = Partition(A, 0, A.Length - 1);
+            int p = Partition(array, 0, array.Length - 1);
             //  Use Insertionsort for small lists
             if (p < 16) {
-                A = InsertionSort(A);
+                array = InsertionSort(array);
             } else {
-                A = p > (2 * Math.Log(A.Length)) ? HeapSort(A) : QuickSort(A, 0, A.Length - 1);
+                array = p > (2 * Math.Log(array.Length)) ? HeapSort(array) : QuickSort(array, 0, array.Length - 1);
             }
-            return A;
+            return array;
         }
 
-        public static long[] IntroSort(long[] A) {
+        public static long[] IntroSort(long[] array) {
 
 
-            int p = Partition(A, 0, A.Length - 1);
+            int p = Partition(array, 0, array.Length - 1);
             //  Use Insertionsort for small lists
             if (p < 16) {
-                A = InsertionSort(A);
+                array = InsertionSort(array);
             } else {
-                A = p > (2 * Math.Log(A.Length)) ? HeapSort(A) : QuickSort(A, 0, A.Length - 1);
+                array = p > (2 * Math.Log(array.Length)) ? HeapSort(array) : QuickSort(array, 0, array.Length - 1);
             }
-            return A;
+            return array;
         }
 
-        public static ulong[] IntroSort(ulong[] A) {
+        public static ulong[] IntroSort(ulong[] array) {
 
 
-            int p = Partition(A, 0, A.Length - 1);
+            int p = Partition(array, 0, array.Length - 1);
             //  Use Insertionsort for small lists
             if (p < 16) {
-                A = InsertionSort(A);
+                array = InsertionSort(array);
             } else {
-                A = p > (2 * Math.Log(A.Length)) ? HeapSort(A) : QuickSort(A, 0, A.Length - 1);
+                array = p > (2 * Math.Log(array.Length)) ? HeapSort(array) : QuickSort(array, 0, array.Length - 1);
             }
-            return A;
+            return array;
         }
 
-        public static decimal[] IntroSort(decimal[] A) {
+        public static decimal[] IntroSort(decimal[] array) {
 
 
-            int p = Partition(A, 0, A.Length - 1);
+            int p = Partition(array, 0, array.Length - 1);
             //  Use Insertionsort for small lists
-            A = p < 16 ? InsertionSort(A) : p > (2 * Math.Log(A.Length)) ? HeapSort(A) : QuickSort(A, 0, A.Length - 1);
-            return A;
+            array = p < 16 ? InsertionSort(array) : p > (2 * Math.Log(array.Length)) ? HeapSort(array) : QuickSort(array, 0, array.Length - 1);
+            return array;
         }
 
-        /* 
-        * Mergesort
-        * best-case:       O(n*log(n))
-        * average-case:    O(n*log(n))
-        * worst-case:      O(n*log(n))
-        */
-       
-
-        public static int[] HeapSort(int[] A) {
-            int n = A.Length;
+        /// <summary>
+        /// Heapsort
+        /// best-case, average-case, worst-case : O(n*log(n))
+        /// </summary>
+        /// <returns>The sorted array.</returns>
+        /// <param name="array">Array.</param>
+        public static int[] HeapSort(int[] array) {
+            int n = array.Length;
 
             // Build heap (rearrange array) 
             for (int i = n / 2 - 1; i >= 0; i--)
-                Heapify(A, n, i);
+                Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
-                Swap(A, 0, i);
+                Swap(array, 0, i);
 
                 // call max heapify on the reduced heap 
-                A = Heapify(A, i, 0);
+                array = Heapify(array, i, 0);
             }
-            return A;
+            return array;
         }
-
-        public static int[] Heapify(int[] A, int n, int i) {
+        /// <summary>
+        /// Heapify the specified array, n and i.
+        /// </summary>
+        /// <returns>The heapify.</returns>
+        /// <param name="array">Array.</param>
+        /// <param name="n">N.</param>
+        /// <param name="i">The index.</param>
+        public static int[] Heapify(int[] array, int n, int i) {
             int largest = i; // Initialize largest as root 
             int left = 2 * i + 1; // left = 2*i + 1 
             int right = 2 * i + 2; // right = 2*i + 2 
 
             // If left child is larger than root 
-            if (left < n && A[left].CompareTo(A[largest]) > 0)
+            if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
             // If right child is larger than largest so far 
-            if (right < n && A[right].CompareTo(A[largest]) > 0)
+            if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
             // If largest is not root 
             if (largest != i) {
-                Swap(A, i, largest);
+                Swap(array, i, largest);
 
                 // Recursively heapify the affected sub-tree 
-                A = Heapify(A, n, largest);
+                array = Heapify(array, n, largest);
             }
-            return A;
+            return array;
         }
 
-        public static double[] HeapSort(double[] A) {
-            int n = A.Length;
+        public static double[] HeapSort(double[] array) {
+            int n = array.Length;
 
             // Build heap (rearrange array) 
             for (int i = n / 2 - 1; i >= 0; i--)
-                Heapify(A, n, i);
+                Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
-                Swap(A, 0, i);
+                Swap(array, 0, i);
 
                 // call max heapify on the reduced heap 
-                A = Heapify(A, i, 0);
+                array = Heapify(array, i, 0);
             }
-            return A;
+            return array;
         }
 
-        public static double[] Heapify(double[] A, int n, int i) {
+        public static double[] Heapify(double[] array, int n, int i) {
             int largest = i; // Initialize largest as root 
             int left = 2 * i + 1; // left = 2*i + 1 
             int right = 2 * i + 2; // right = 2*i + 2 
 
             // If left child is larger than root 
-            if (left < n && A[left].CompareTo(A[largest]) > 0)
+            if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
             // If right child is larger than largest so far 
-            if (right < n && A[right].CompareTo(A[largest]) > 0)
+            if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
             // If largest is not root 
             if (largest != i) {
-                Swap(A, i, largest);
+                Swap(array, i, largest);
 
                 // Recursively heapify the affected sub-tree 
-                A = Heapify(A, n, largest);
+                array = Heapify(array, n, largest);
             }
-            return A;
+            return array;
         }
 
-        public static float[] HeapSort(float[] A) {
-            int n = A.Length;
+        public static float[] HeapSort(float[] array) {
+            int n = array.Length;
 
             // Build heap (rearrange array) 
             for (int i = n / 2 - 1; i >= 0; i--)
-                Heapify(A, n, i);
+                Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
-                Swap(A, 0, i);
+                Swap(array, 0, i);
 
                 // call max heapify on the reduced heap 
-                A = Heapify(A, i, 0);
+                array = Heapify(array, i, 0);
             }
-            return A;
+            return array;
         }
 
-        public static float[] Heapify(float[] A, int n, int i) {
+        public static float[] Heapify(float[] array, int n, int i) {
             int largest = i; // Initialize largest as root 
             int left = 2 * i + 1; // left = 2*i + 1 
             int right = 2 * i + 2; // right = 2*i + 2 
 
             // If left child is larger than root 
-            if (left < n && A[left].CompareTo(A[largest]) > 0)
+            if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
             // If right child is larger than largest so far 
-            if (right < n && A[right].CompareTo(A[largest]) > 0)
+            if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
             // If largest is not root 
             if (largest != i) {
-                Swap(A, i, largest);
+                Swap(array, i, largest);
 
                 // Recursively heapify the affected sub-tree 
-                A = Heapify(A, n, largest);
+                array = Heapify(array, n, largest);
             }
-            return A;
+            return array;
         }
 
-        public static decimal[] HeapSort(decimal[] A) {
-            int n = A.Length;
+        public static decimal[] HeapSort(decimal[] array) {
+            int n = array.Length;
 
             // Build heap (rearrange array) 
             for (int i = n / 2 - 1; i >= 0; i--)
-                Heapify(A, n, i);
+                Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
-                Swap(A, 0, i);
+                Swap(array, 0, i);
 
                 // call max heapify on the reduced heap 
-                A = Heapify(A, i, 0);
+                array = Heapify(array, i, 0);
             }
-            return A;
+            return array;
         }
 
-        public static decimal[] Heapify(decimal[] A, int n, int i) {
+        public static decimal[] Heapify(decimal[] array, int n, int i) {
             int largest = i; // Initialize largest as root 
             int left = 2 * i + 1; // left = 2*i + 1 
             int right = 2 * i + 2; // right = 2*i + 2 
 
             // If left child is larger than root 
-            if (left < n && A[left].CompareTo(A[largest]) > 0)
+            if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
             // If right child is larger than largest so far 
-            if (right < n && A[right].CompareTo(A[largest]) > 0)
+            if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
             // If largest is not root 
             if (largest != i) {
-                Swap(A, i, largest);
+                Swap(array, i, largest);
 
                 // Recursively heapify the affected sub-tree 
-                A = Heapify(A, n, largest);
+                array = Heapify(array, n, largest);
             }
-            return A;
+            return array;
         }
 
-        public static ushort[] HeapSort(ushort[] A) {
-            int n = A.Length;
+        public static ushort[] HeapSort(ushort[] array) {
+            int n = array.Length;
 
             // Build heap (rearrange array) 
             for (int i = n / 2 - 1; i >= 0; i--)
-                Heapify(A, n, i);
+                Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
-                Swap(A, 0, i);
+                Swap(array, 0, i);
 
                 // call max heapify on the reduced heap 
-                A = Heapify(A, i, 0);
+                array = Heapify(array, i, 0);
             }
-            return A;
+            return array;
         }
 
-        public static ushort[] Heapify(ushort[] A, int n, int i) {
+        public static ushort[] Heapify(ushort[] array, int n, int i) {
             int largest = i; // Initialize largest as root 
             int left = 2 * i + 1; // left = 2*i + 1 
             int right = 2 * i + 2; // right = 2*i + 2 
 
             // If left child is larger than root 
-            if (left < n && A[left].CompareTo(A[largest]) > 0)
+            if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
             // If right child is larger than largest so far 
-            if (right < n && A[right].CompareTo(A[largest]) > 0)
+            if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
             // If largest is not root 
             if (largest != i) {
-                Swap(A, i, largest);
+                Swap(array, i, largest);
 
                 // Recursively heapify the affected sub-tree 
-                A = Heapify(A, n, largest);
+                array = Heapify(array, n, largest);
             }
-            return A;
+            return array;
         }
 
-        public static short[] HeapSort(short[] A) {
-            int n = A.Length;
+        public static short[] HeapSort(short[] array) {
+            int n = array.Length;
 
             // Build heap (rearrange array) 
             for (int i = n / 2 - 1; i >= 0; i--)
-                Heapify(A, n, i);
+                Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
-                Swap(A, 0, i);
+                Swap(array, 0, i);
 
                 // call max heapify on the reduced heap 
-                A = Heapify(A, i, 0);
+                array = Heapify(array, i, 0);
             }
-            return A;
+            return array;
         }
 
-        public static short[] Heapify(short[] A, int n, int i) {
+        public static short[] Heapify(short[] array, int n, int i) {
             int largest = i; // Initialize largest as root 
             int left = 2 * i + 1; // left = 2*i + 1 
             int right = 2 * i + 2; // right = 2*i + 2 
 
             // If left child is larger than root 
-            if (left < n && A[left].CompareTo(A[largest]) > 0)
+            if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
             // If right child is larger than largest so far 
-            if (right < n && A[right].CompareTo(A[largest]) > 0)
+            if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
             // If largest is not root 
             if (largest != i) {
-                Swap(A, i, largest);
+                Swap(array, i, largest);
 
                 // Recursively heapify the affected sub-tree 
-                A = Heapify(A, n, largest);
+                array = Heapify(array, n, largest);
             }
-            return A;
+            return array;
         }
 
-        public static sbyte[] HeapSort(sbyte[] A) {
-            int n = A.Length;
+        public static sbyte[] HeapSort(sbyte[] array) {
+            int n = array.Length;
 
             // Build heap (rearrange array) 
             for (int i = n / 2 - 1; i >= 0; i--)
-                Heapify(A, n, i);
+                Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
-                Swap(A, 0, i);
+                Swap(array, 0, i);
 
                 // call max heapify on the reduced heap 
-                A = Heapify(A, i, 0);
+                array = Heapify(array, i, 0);
             }
-            return A;
+            return array;
         }
 
-        public static sbyte[] Heapify(sbyte[] A, int n, int i) {
+        public static sbyte[] Heapify(sbyte[] array, int n, int i) {
             int largest = i; // Initialize largest as root 
             int left = 2 * i + 1; // left = 2*i + 1 
             int right = 2 * i + 2; // right = 2*i + 2 
 
             // If left child is larger than root 
-            if (left < n && A[left].CompareTo(A[largest]) > 0)
+            if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
             // If right child is larger than largest so far 
-            if (right < n && A[right].CompareTo(A[largest]) > 0)
+            if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
             // If largest is not root 
             if (largest != i) {
-                Swap(A, i, largest);
+                Swap(array, i, largest);
 
                 // Recursively heapify the affected sub-tree 
-                A = Heapify(A, n, largest);
+                array = Heapify(array, n, largest);
             }
-            return A;
+            return array;
         }
 
-        public static byte[] HeapSort(byte[] A) {
-            int n = A.Length;
+        public static byte[] HeapSort(byte[] array) {
+            int n = array.Length;
 
             // Build heap (rearrange array) 
             for (int i = n / 2 - 1; i >= 0; i--)
-                Heapify(A, n, i);
+                Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
-                Swap(A, 0, i);
+                Swap(array, 0, i);
 
                 // call max heapify on the reduced heap 
-                A = Heapify(A, i, 0);
+                array = Heapify(array, i, 0);
             }
-            return A;
+            return array;
         }
 
-        public static byte[] Heapify(byte[] A, int n, int i) {
+        public static byte[] Heapify(byte[] array, int n, int i) {
             int largest = i; // Initialize largest as root 
             int left = 2 * i + 1; // left = 2*i + 1 
             int right = 2 * i + 2; // right = 2*i + 2 
 
             // If left child is larger than root 
-            if (left < n && A[left].CompareTo(A[largest]) > 0)
+            if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
             // If right child is larger than largest so far 
-            if (right < n && A[right].CompareTo(A[largest]) > 0)
+            if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
             // If largest is not root 
             if (largest != i) {
-                Swap(A, i, largest);
+                Swap(array, i, largest);
 
                 // Recursively heapify the affected sub-tree 
-                A = Heapify(A, n, largest);
+                array = Heapify(array, n, largest);
             }
-            return A;
+            return array;
         }
 
-        public static uint[] HeapSort(uint[] A) {
-            int n = A.Length;
+        public static uint[] HeapSort(uint[] array) {
+            int n = array.Length;
 
             // Build heap (rearrange array) 
             for (int i = n / 2 - 1; i >= 0; i--)
-                Heapify(A, n, i);
+                Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
-                Swap(A, 0, i);
+                Swap(array, 0, i);
 
                 // call max heapify on the reduced heap 
-                A = Heapify(A, i, 0);
+                array = Heapify(array, i, 0);
             }
-            return A;
+            return array;
         }
 
-        public static uint[] Heapify(uint[] A, int n, int i) {
+        public static uint[] Heapify(uint[] array, int n, int i) {
             int largest = i; // Initialize largest as root 
             int left = 2 * i + 1; // left = 2*i + 1 
             int right = 2 * i + 2; // right = 2*i + 2 
 
             // If left child is larger than root 
-            if (left < n && A[left].CompareTo(A[largest]) > 0)
+            if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
             // If right child is larger than largest so far 
-            if (right < n && A[right].CompareTo(A[largest]) > 0)
+            if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
             // If largest is not root 
             if (largest != i) {
-                Swap(A, i, largest);
+                Swap(array, i, largest);
 
                 // Recursively heapify the affected sub-tree 
-                A = Heapify(A, n, largest);
+                array = Heapify(array, n, largest);
             }
-            return A;
+            return array;
         }
 
-        public static long[] HeapSort(long[] A) {
-            int n = A.Length;
+        public static long[] HeapSort(long[] array) {
+            int n = array.Length;
 
             // Build heap (rearrange array) 
             for (int i = n / 2 - 1; i >= 0; i--)
-                Heapify(A, n, i);
+                Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
-                Swap(A, 0, i);
+                Swap(array, 0, i);
 
                 // call max heapify on the reduced heap 
-                A = Heapify(A, i, 0);
+                array = Heapify(array, i, 0);
             }
-            return A;
+            return array;
         }
 
-        public static long[] Heapify(long[] A, int n, int i) {
+        public static long[] Heapify(long[] array, int n, int i) {
             int largest = i; // Initialize largest as root 
             int left = 2 * i + 1; // left = 2*i + 1 
             int right = 2 * i + 2; // right = 2*i + 2 
 
             // If left child is larger than root 
-            if (left < n && A[left].CompareTo(A[largest]) > 0)
+            if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
             // If right child is larger than largest so far 
-            if (right < n && A[right].CompareTo(A[largest]) > 0)
+            if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
             // If largest is not root 
             if (largest != i) {
-                Swap(A, i, largest);
+                Swap(array, i, largest);
 
                 // Recursively heapify the affected sub-tree 
-                A = Heapify(A, n, largest);
+                array = Heapify(array, n, largest);
             }
-            return A;
+            return array;
         }
 
-        public static ulong[] HeapSort(ulong[] A) {
-            int n = A.Length;
+        public static ulong[] HeapSort(ulong[] array) {
+            int n = array.Length;
 
             // Build heap (rearrange array) 
             for (int i = n / 2 - 1; i >= 0; i--)
-                Heapify(A, n, i);
+                Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
-                Swap(A, 0, i);
+                Swap(array, 0, i);
 
                 // call max heapify on the reduced heap 
-                A = Heapify(A, i, 0);
+                array = Heapify(array, i, 0);
             }
-            return A;
+            return array;
         }
 
-        public static ulong[] Heapify(ulong[] A, int n, int i) {
+        public static ulong[] Heapify(ulong[] array, int n, int i) {
             int largest = i; // Initialize largest as root 
             int left = 2 * i + 1; // left = 2*i + 1 
             int right = 2 * i + 2; // right = 2*i + 2 
 
             // If left child is larger than root 
-            if (left < n && A[left].CompareTo(A[largest]) > 0)
+            if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
             // If right child is larger than largest so far 
-            if (right < n && A[right].CompareTo(A[largest]) > 0)
+            if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
             // If largest is not root 
             if (largest != i) {
-                Swap(A, i, largest);
+                Swap(array, i, largest);
 
                 // Recursively heapify the affected sub-tree 
-                A = Heapify(A, n, largest);
+                array = Heapify(array, n, largest);
             }
-            return A;
+            return array;
         }
-
-        /*
-        * Bucketsort
-        * best-case:       O(n)
-        * average-case:    O(n+k)
-        * worst-case:      O(n*log(n))
-        */
-
     }
 }
