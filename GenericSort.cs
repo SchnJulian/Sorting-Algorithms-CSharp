@@ -102,6 +102,25 @@ namespace GenericSort {
             return A;
         }
 
+        public static T[] BubbleSort<T>(T[] A) where T : IComparable {
+            int n = A.Length;
+            int newn;
+            do {
+                //  New length of list to sort
+                newn = 1;
+                for (int i = 0; i < n - 1; i++) {
+                    if (A[i].CompareTo(A[i + 1]) > 0) {
+                        Swap(A, i, i + 1);
+                        newn = i + 1;
+                    }
+                }
+                n = newn;
+            } while (n > 1);
+            //  Return sorted list
+            return A;
+        }
+
+
 
         public static List<T> QuickSort<T>(List<T> A, int lo, int hi) where T : IComparable {
             if (lo < hi) {

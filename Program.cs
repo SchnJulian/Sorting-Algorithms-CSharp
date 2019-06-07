@@ -1,22 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+
 namespace SortingAlgorithms {
     class MainClass {
         public static void Main() {
-            Random random = new Random();
-            Console.WriteLine("q:");
-            for (int i = 0; i < 11; i++) {
+           
+            var bubblesort = new Tuple<string, TimeSpan>("Bubble Sort", benchmark(Sort.BubbleSort));
+            var combsort = new Tuple<string, TimeSpan>("Comb Sort", benchmark(Sort.CombSort));
+            var heapsort = new Tuple<string, TimeSpan>("Heap Sort", benchmark(Sort.HeapSort));
+            var insertionsort = new Tuple<string, TimeSpan>("Insertion Sort", benchmark(Sort.InsertionSort));
+            var introsort = new Tuple<string, TimeSpan>("Intro Sort", benchmark(Sort.IntroSort));
+            var mergesort = new Tuple<string, TimeSpan>("Merge Sort", benchmark(Sort.MergeSort));
+           
+            var resx = new List<Tuple<string, TimeSpan>> { bubblesort, combsort, heapsort, insertionsort, introsort, mergesort };
 
-                var x = new double[22];
-                for (int j = 0; j < 22; j++) {
-                    x[j] = random.NextDouble() * 10;
-                }
-                printList(Sort.HeapSort(x));
-                Console.WriteLine(IsSorted(Sort.MergeSort(x)));
+            var resy = from element in resx orderby element.Item2 select element;
+
+            var res = resy.ToList();
+
+            for (int i = 0; i < res.Count; i++) {
+                Console.Write(res[i].Item1);
+                Console.Write("\t");
+                Console.Write(res[i].Item2);
+                Console.WriteLine();
             }
+
         }
 
-        public static void printList<T>(List<T> list) {
+        public static int[] randomArray(int size) {
+            Random random = new Random();
+            var x = new int[size];
+            for (int i = 0; i < size; i++) {
+                x[i] = random.Next(0, 100);
+            }
+            return x;
+        }
+
+        public static TimeSpan benchmark(Func<int[], int[]> func) {
+            Stopwatch sw = new Stopwatch();
+            var test = randomArray(40000);
+            sw.Start();
+            func(test);
+            sw.Stop();
+            return sw.Elapsed;
+        }
+
+
+
+        public static void printList<T>(T[] list) {
             foreach (var c in list) {
                 Console.Write(c + " ");
             }
