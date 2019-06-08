@@ -1,0 +1,6 @@
+/Users/Julian/Projects/SortingAlgorithms/SortingAlgorithms/bin/Debug/SortingAlgorithms.exe
+/Users/Julian/Projects/SortingAlgorithms/SortingAlgorithms/bin/Debug/SortingAlgorithms.pdb
+/Users/Julian/Projects/SortingAlgorithms/SortingAlgorithms/obj/x86/Debug/SortingAlgorithms.csproj.CoreCompileInputs.cache
+/Users/Julian/Projects/SortingAlgorithms/SortingAlgorithms/obj/x86/Debug/SortingAlgorithms.exe
+/Users/Julian/Projects/SortingAlgorithms/SortingAlgorithms/obj/x86/Debug/SortingAlgorithms.pdb
+/Users/Julian/Projects/SortingAlgorithms/SortingAlgorithms/obj/x86/Debug/SortingAlgorithms.csprojAssemblyReference.cache

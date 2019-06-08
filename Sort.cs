@@ -4,7 +4,6 @@
 namespace SortingAlgorithms {
     public static class Sort {
 
-
         // auxiliary functions
         public static void Swap(sbyte[] array, int i, int j) {
             var h = array[i];
