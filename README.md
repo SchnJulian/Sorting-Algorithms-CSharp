@@ -13,12 +13,12 @@ Implementation of sorting algorithms in c# supporting every numeric data type. Y
 
 ## Algorithms <a name="algorithms"></a>
 
-* MergeSort
-* IntroSort
-* QuickSort
-* HeapSort
-* BubbleSort
-* SelectionSort
+* [MergeSort](https://en.wikipedia.org/wiki/Merge_sort)
+* [IntroSort](https://en.wikipedia.org/wiki/Introsort)
+* [QuickSort](https://en.wikipedia.org/wiki/Quicksort)
+* [HeapSort](https://en.wikipedia.org/wiki/Heapsort)
+* [BubbleSort](https://en.wikipedia.org/wiki/Bubble_sort)
+* [SelectionSort](https://en.wikipedia.org/wiki/Selection_sort)
 
 ## Supported data types <a name="datatype"></a>
 
