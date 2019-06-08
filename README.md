@@ -33,9 +33,9 @@ Just add the Sort.cs file to your project folder and use the implemented algorit
 ![](tutorial2.gif)
 
 ## How to use as library
-![](tutorial1.png)
+![](Tutorial1.png)
 Add the .dll file as reference to your project
-![](tutorial3.png)
+![](Tutorial3.png)
 Select ".NET-Assembly" and search your download folder for the provided .dll file.
-![](tutorial2.png)
+![](Tutorial2.png)
 Select the file and you're ready to go!
