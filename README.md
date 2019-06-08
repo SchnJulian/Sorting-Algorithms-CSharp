@@ -5,8 +5,11 @@ Implementation of sorting algorithms in c# supporting every numeric data type. Y
 * [How to use](#use)
 * [Use as library](#library)
 * [Algorithms](#algorithms)
+* [Time complexity](#time-complexity)
+* [Benchmarks](#benchmarks)
 * [License](#license)
 * [Contact](#contact)
+
 
 ## Algorithms <a name="algorithms"></a>
 
@@ -46,6 +49,22 @@ Add the .dll file as reference to your project
 Select ".NET-Assembly" and search your download folder for the provided .dll file.
 ![](Tutorial/Tutorial2.png)
 Select the file and you're ready to go!
+
+## Time complexity
+The time an algorithm takes to sort a certain array depends on its length. E.g. for short arrays selectionsort might be the best solution, whereas long arrays should always be sorted by quicksort, introsort, etc. (O(n*log(n))).
+
+To find out, which algorithms is the fastest for you task, run the benchmark from the `benchmark.cs` file and specify the length of you array.
+
+## Benchmarks
+### 20-element array
+![](Tutorial/Benchmarks/20.png)
+### 1000-element array
+![](Tutorial/Benchmarks/1000.png)
+### 10000-element array
+![](Tutorial/Benchmarks/10000.png)
+### 50000-element array
+![](Tutorial/Benchmarks/50000.png)
+
 
 
 ### Built With
