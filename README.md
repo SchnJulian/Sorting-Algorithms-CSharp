@@ -1,5 +1,5 @@
 # Sorting-Algorithms-CSharp
-Implementation of sorting algorithms in c#
+Implementation of sorting algorithms in c# supporting every numeric data type. You can either include the source-code in your own project, or import the .dll file as reference.
 
 ## Algorithms
 
@@ -35,7 +35,6 @@ Just add the Sort.cs file to your project folder and use the implemented algorit
 ## How to use as library
 ![](tutorial1.png)
 Add the .dll file as reference to your project
-
 ![](tutorial3.png)
 Select ".NET-Assembly" and search your download folder for the provided .dll file.
 ![](tutorial2.png)
