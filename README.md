@@ -19,6 +19,7 @@ Implementation of sorting algorithms in c# supporting every numeric data type. Y
 * [HeapSort](https://en.wikipedia.org/wiki/Heapsort)
 * [BubbleSort](https://en.wikipedia.org/wiki/Bubble_sort)
 * [SelectionSort](https://en.wikipedia.org/wiki/Selection_sort)
+* [CombSort](https://de.wikipedia.org/wiki/Combsort)
 
 ## Supported data types <a name="datatype"></a>
 
