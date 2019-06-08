@@ -67,7 +67,7 @@ To find out, which algorithms is the fastest for you task, run the benchmark fro
 ![](Tutorial/Benchmarks/50000.png)
 
 ### Visualization
-![](Tutoria/Benchmarks/timeComplexity2.png)
+![](Tutorial/Benchmarks/timeComplexity2.png)
 
 
 ### Built With
