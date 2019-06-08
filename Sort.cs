@@ -1143,7 +1143,7 @@ namespace SortingAlgorithms {
 
         /// <summary>
         /// Quicksort
-        /// best-case, average-case: O(n*log(n)), worst-case: O(n^2) 
+        /// best-case, average-case: O(n*log(n)), worst-case: O(n^2)
         /// </summary>
         /// <returns>The sorted array.</returns>
         /// <param name="array">Array.</param>
@@ -1488,7 +1488,7 @@ namespace SortingAlgorithms {
          /// <param name="array">Array.</param>
         public static int[] InsertionSort(int[] array) {
             int n = array.Length;
-            //  value to be sorted 
+            //  value to be sorted
             int value;
             //  Insertion index of 'value'
             int j;
@@ -1511,7 +1511,7 @@ namespace SortingAlgorithms {
 
         public static double[] InsertionSort(double[] array) {
             int n = array.Length;
-            //  value to be sorted 
+            //  value to be sorted
             double value;
             //  Insertion index of 'value'
             int j;
@@ -1534,7 +1534,7 @@ namespace SortingAlgorithms {
 
         public static float[] InsertionSort(float[] array) {
             int n = array.Length;
-            //  value to be sorted 
+            //  value to be sorted
             float value;
             //  Insertion index of 'value'
             int j;
@@ -1557,7 +1557,7 @@ namespace SortingAlgorithms {
 
         public static sbyte[] InsertionSort(sbyte[] array) {
             int n = array.Length;
-            //  value to be sorted 
+            //  value to be sorted
             sbyte value;
             //  Insertion index of 'value'
             int j;
@@ -1580,7 +1580,7 @@ namespace SortingAlgorithms {
 
         public static short[] InsertionSort(short[] array) {
             int n = array.Length;
-            //  value to be sorted 
+            //  value to be sorted
             short value;
             //  Insertion index of 'value'
             int j;
@@ -1603,7 +1603,7 @@ namespace SortingAlgorithms {
 
         public static ushort[] InsertionSort(ushort[] array) {
             int n = array.Length;
-            //  value to be sorted 
+            //  value to be sorted
             ushort value;
             //  Insertion index of 'value'
             int j;
@@ -1626,7 +1626,7 @@ namespace SortingAlgorithms {
 
         public static byte[] InsertionSort(byte[] array) {
             int n = array.Length;
-            //  value to be sorted 
+            //  value to be sorted
             byte value;
             //  Insertion index of 'value'
             int j;
@@ -1649,7 +1649,7 @@ namespace SortingAlgorithms {
 
         public static long[] InsertionSort(long[] array) {
             int n = array.Length;
-            //  value to be sorted 
+            //  value to be sorted
             long value;
             //  Insertion index of 'value'
             int j;
@@ -1672,7 +1672,7 @@ namespace SortingAlgorithms {
 
         public static uint[] InsertionSort(uint[] array) {
             int n = array.Length;
-            //  value to be sorted 
+            //  value to be sorted
             uint value;
             //  Insertion index of 'value'
             int j;
@@ -1695,7 +1695,7 @@ namespace SortingAlgorithms {
 
         public static ulong[] InsertionSort(ulong[] array) {
             int n = array.Length;
-            //  value to be sorted 
+            //  value to be sorted
             ulong value;
             //  Insertion index of 'value'
             int j;
@@ -1718,7 +1718,7 @@ namespace SortingAlgorithms {
 
         public static decimal[] InsertionSort(decimal[] array) {
             int n = array.Length;
-            //  value to be sorted 
+            //  value to be sorted
             decimal value;
             //  Insertion index of 'value'
             int j;
@@ -1963,7 +1963,7 @@ namespace SortingAlgorithms {
             } while (swapped == true || stepLength > 1);
             return array;
         }
-       
+
         /// <summary>
         /// Introsort
         /// best-case, average-case, worst-case: O(n*log(n))
@@ -2116,14 +2116,14 @@ namespace SortingAlgorithms {
         public static int[] HeapSort(int[] array) {
             int n = array.Length;
 
-            // Build heap (rearrange array) 
+            // Build heap (rearrange array)
             for (int i = n / 2 - 1; i >= 0; i--)
                 Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
                 Swap(array, 0, i);
 
-                // call max heapify on the reduced heap 
+                // call max heapify on the reduced heap
                 array = Heapify(array, i, 0);
             }
             return array;
@@ -2136,23 +2136,23 @@ namespace SortingAlgorithms {
         /// <param name="n">N.</param>
         /// <param name="i">The index.</param>
         public static int[] Heapify(int[] array, int n, int i) {
-            int largest = i; // Initialize largest as root 
-            int left = 2 * i + 1; // left = 2*i + 1 
-            int right = 2 * i + 2; // right = 2*i + 2 
+            int largest = i; // Initialize largest as root
+            int left = 2 * i + 1; // left = 2*i + 1
+            int right = 2 * i + 2; // right = 2*i + 2
 
-            // If left child is larger than root 
+            // If left child is larger than root
             if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
-            // If right child is larger than largest so far 
+            // If right child is larger than largest so far
             if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
-            // If largest is not root 
+            // If largest is not root
             if (largest != i) {
                 Swap(array, i, largest);
 
-                // Recursively heapify the affected sub-tree 
+                // Recursively heapify the affected sub-tree
                 array = Heapify(array, n, largest);
             }
             return array;
@@ -2161,37 +2161,37 @@ namespace SortingAlgorithms {
         public static double[] HeapSort(double[] array) {
             int n = array.Length;
 
-            // Build heap (rearrange array) 
+            // Build heap (rearrange array)
             for (int i = n / 2 - 1; i >= 0; i--)
                 Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
                 Swap(array, 0, i);
 
-                // call max heapify on the reduced heap 
+                // call max heapify on the reduced heap
                 array = Heapify(array, i, 0);
             }
             return array;
         }
 
         public static double[] Heapify(double[] array, int n, int i) {
-            int largest = i; // Initialize largest as root 
-            int left = 2 * i + 1; // left = 2*i + 1 
-            int right = 2 * i + 2; // right = 2*i + 2 
+            int largest = i; // Initialize largest as root
+            int left = 2 * i + 1; // left = 2*i + 1
+            int right = 2 * i + 2; // right = 2*i + 2
 
-            // If left child is larger than root 
+            // If left child is larger than root
             if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
-            // If right child is larger than largest so far 
+            // If right child is larger than largest so far
             if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
-            // If largest is not root 
+            // If largest is not root
             if (largest != i) {
                 Swap(array, i, largest);
 
-                // Recursively heapify the affected sub-tree 
+                // Recursively heapify the affected sub-tree
                 array = Heapify(array, n, largest);
             }
             return array;
@@ -2200,37 +2200,37 @@ namespace SortingAlgorithms {
         public static float[] HeapSort(float[] array) {
             int n = array.Length;
 
-            // Build heap (rearrange array) 
+            // Build heap (rearrange array)
             for (int i = n / 2 - 1; i >= 0; i--)
                 Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
                 Swap(array, 0, i);
 
-                // call max heapify on the reduced heap 
+                // call max heapify on the reduced heap
                 array = Heapify(array, i, 0);
             }
             return array;
         }
 
         public static float[] Heapify(float[] array, int n, int i) {
-            int largest = i; // Initialize largest as root 
-            int left = 2 * i + 1; // left = 2*i + 1 
-            int right = 2 * i + 2; // right = 2*i + 2 
+            int largest = i; // Initialize largest as root
+            int left = 2 * i + 1; // left = 2*i + 1
+            int right = 2 * i + 2; // right = 2*i + 2
 
-            // If left child is larger than root 
+            // If left child is larger than root
             if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
-            // If right child is larger than largest so far 
+            // If right child is larger than largest so far
             if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
-            // If largest is not root 
+            // If largest is not root
             if (largest != i) {
                 Swap(array, i, largest);
 
-                // Recursively heapify the affected sub-tree 
+                // Recursively heapify the affected sub-tree
                 array = Heapify(array, n, largest);
             }
             return array;
@@ -2239,37 +2239,37 @@ namespace SortingAlgorithms {
         public static decimal[] HeapSort(decimal[] array) {
             int n = array.Length;
 
-            // Build heap (rearrange array) 
+            // Build heap (rearrange array)
             for (int i = n / 2 - 1; i >= 0; i--)
                 Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
                 Swap(array, 0, i);
 
-                // call max heapify on the reduced heap 
+                // call max heapify on the reduced heap
                 array = Heapify(array, i, 0);
             }
             return array;
         }
 
         public static decimal[] Heapify(decimal[] array, int n, int i) {
-            int largest = i; // Initialize largest as root 
-            int left = 2 * i + 1; // left = 2*i + 1 
-            int right = 2 * i + 2; // right = 2*i + 2 
+            int largest = i; // Initialize largest as root
+            int left = 2 * i + 1; // left = 2*i + 1
+            int right = 2 * i + 2; // right = 2*i + 2
 
-            // If left child is larger than root 
+            // If left child is larger than root
             if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
-            // If right child is larger than largest so far 
+            // If right child is larger than largest so far
             if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
-            // If largest is not root 
+            // If largest is not root
             if (largest != i) {
                 Swap(array, i, largest);
 
-                // Recursively heapify the affected sub-tree 
+                // Recursively heapify the affected sub-tree
                 array = Heapify(array, n, largest);
             }
             return array;
@@ -2278,37 +2278,37 @@ namespace SortingAlgorithms {
         public static ushort[] HeapSort(ushort[] array) {
             int n = array.Length;
 
-            // Build heap (rearrange array) 
+            // Build heap (rearrange array)
             for (int i = n / 2 - 1; i >= 0; i--)
                 Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
                 Swap(array, 0, i);
 
-                // call max heapify on the reduced heap 
+                // call max heapify on the reduced heap
                 array = Heapify(array, i, 0);
             }
             return array;
         }
 
         public static ushort[] Heapify(ushort[] array, int n, int i) {
-            int largest = i; // Initialize largest as root 
-            int left = 2 * i + 1; // left = 2*i + 1 
-            int right = 2 * i + 2; // right = 2*i + 2 
+            int largest = i; // Initialize largest as root
+            int left = 2 * i + 1; // left = 2*i + 1
+            int right = 2 * i + 2; // right = 2*i + 2
 
-            // If left child is larger than root 
+            // If left child is larger than root
             if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
-            // If right child is larger than largest so far 
+            // If right child is larger than largest so far
             if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
-            // If largest is not root 
+            // If largest is not root
             if (largest != i) {
                 Swap(array, i, largest);
 
-                // Recursively heapify the affected sub-tree 
+                // Recursively heapify the affected sub-tree
                 array = Heapify(array, n, largest);
             }
             return array;
@@ -2317,37 +2317,37 @@ namespace SortingAlgorithms {
         public static short[] HeapSort(short[] array) {
             int n = array.Length;
 
-            // Build heap (rearrange array) 
+            // Build heap (rearrange array)
             for (int i = n / 2 - 1; i >= 0; i--)
                 Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
                 Swap(array, 0, i);
 
-                // call max heapify on the reduced heap 
+                // call max heapify on the reduced heap
                 array = Heapify(array, i, 0);
             }
             return array;
         }
 
         public static short[] Heapify(short[] array, int n, int i) {
-            int largest = i; // Initialize largest as root 
-            int left = 2 * i + 1; // left = 2*i + 1 
-            int right = 2 * i + 2; // right = 2*i + 2 
+            int largest = i; // Initialize largest as root
+            int left = 2 * i + 1; // left = 2*i + 1
+            int right = 2 * i + 2; // right = 2*i + 2
 
-            // If left child is larger than root 
+            // If left child is larger than root
             if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
-            // If right child is larger than largest so far 
+            // If right child is larger than largest so far
             if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
-            // If largest is not root 
+            // If largest is not root
             if (largest != i) {
                 Swap(array, i, largest);
 
-                // Recursively heapify the affected sub-tree 
+                // Recursively heapify the affected sub-tree
                 array = Heapify(array, n, largest);
             }
             return array;
@@ -2356,37 +2356,37 @@ namespace SortingAlgorithms {
         public static sbyte[] HeapSort(sbyte[] array) {
             int n = array.Length;
 
-            // Build heap (rearrange array) 
+            // Build heap (rearrange array)
             for (int i = n / 2 - 1; i >= 0; i--)
                 Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
                 Swap(array, 0, i);
 
-                // call max heapify on the reduced heap 
+                // call max heapify on the reduced heap
                 array = Heapify(array, i, 0);
             }
             return array;
         }
 
         public static sbyte[] Heapify(sbyte[] array, int n, int i) {
-            int largest = i; // Initialize largest as root 
-            int left = 2 * i + 1; // left = 2*i + 1 
-            int right = 2 * i + 2; // right = 2*i + 2 
+            int largest = i; // Initialize largest as root
+            int left = 2 * i + 1; // left = 2*i + 1
+            int right = 2 * i + 2; // right = 2*i + 2
 
-            // If left child is larger than root 
+            // If left child is larger than root
             if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
-            // If right child is larger than largest so far 
+            // If right child is larger than largest so far
             if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
-            // If largest is not root 
+            // If largest is not root
             if (largest != i) {
                 Swap(array, i, largest);
 
-                // Recursively heapify the affected sub-tree 
+                // Recursively heapify the affected sub-tree
                 array = Heapify(array, n, largest);
             }
             return array;
@@ -2395,37 +2395,37 @@ namespace SortingAlgorithms {
         public static byte[] HeapSort(byte[] array) {
             int n = array.Length;
 
-            // Build heap (rearrange array) 
+            // Build heap (rearrange array)
             for (int i = n / 2 - 1; i >= 0; i--)
                 Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
                 Swap(array, 0, i);
 
-                // call max heapify on the reduced heap 
+                // call max heapify on the reduced heap
                 array = Heapify(array, i, 0);
             }
             return array;
         }
 
         public static byte[] Heapify(byte[] array, int n, int i) {
-            int largest = i; // Initialize largest as root 
-            int left = 2 * i + 1; // left = 2*i + 1 
-            int right = 2 * i + 2; // right = 2*i + 2 
+            int largest = i; // Initialize largest as root
+            int left = 2 * i + 1; // left = 2*i + 1
+            int right = 2 * i + 2; // right = 2*i + 2
 
-            // If left child is larger than root 
+            // If left child is larger than root
             if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
-            // If right child is larger than largest so far 
+            // If right child is larger than largest so far
             if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
-            // If largest is not root 
+            // If largest is not root
             if (largest != i) {
                 Swap(array, i, largest);
 
-                // Recursively heapify the affected sub-tree 
+                // Recursively heapify the affected sub-tree
                 array = Heapify(array, n, largest);
             }
             return array;
@@ -2434,37 +2434,37 @@ namespace SortingAlgorithms {
         public static uint[] HeapSort(uint[] array) {
             int n = array.Length;
 
-            // Build heap (rearrange array) 
+            // Build heap (rearrange array)
             for (int i = n / 2 - 1; i >= 0; i--)
                 Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
                 Swap(array, 0, i);
 
-                // call max heapify on the reduced heap 
+                // call max heapify on the reduced heap
                 array = Heapify(array, i, 0);
             }
             return array;
         }
 
         public static uint[] Heapify(uint[] array, int n, int i) {
-            int largest = i; // Initialize largest as root 
-            int left = 2 * i + 1; // left = 2*i + 1 
-            int right = 2 * i + 2; // right = 2*i + 2 
+            int largest = i; // Initialize largest as root
+            int left = 2 * i + 1; // left = 2*i + 1
+            int right = 2 * i + 2; // right = 2*i + 2
 
-            // If left child is larger than root 
+            // If left child is larger than root
             if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
-            // If right child is larger than largest so far 
+            // If right child is larger than largest so far
             if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
-            // If largest is not root 
+            // If largest is not root
             if (largest != i) {
                 Swap(array, i, largest);
 
-                // Recursively heapify the affected sub-tree 
+                // Recursively heapify the affected sub-tree
                 array = Heapify(array, n, largest);
             }
             return array;
@@ -2473,37 +2473,37 @@ namespace SortingAlgorithms {
         public static long[] HeapSort(long[] array) {
             int n = array.Length;
 
-            // Build heap (rearrange array) 
+            // Build heap (rearrange array)
             for (int i = n / 2 - 1; i >= 0; i--)
                 Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
                 Swap(array, 0, i);
 
-                // call max heapify on the reduced heap 
+                // call max heapify on the reduced heap
                 array = Heapify(array, i, 0);
             }
             return array;
         }
 
         public static long[] Heapify(long[] array, int n, int i) {
-            int largest = i; // Initialize largest as root 
-            int left = 2 * i + 1; // left = 2*i + 1 
-            int right = 2 * i + 2; // right = 2*i + 2 
+            int largest = i; // Initialize largest as root
+            int left = 2 * i + 1; // left = 2*i + 1
+            int right = 2 * i + 2; // right = 2*i + 2
 
-            // If left child is larger than root 
+            // If left child is larger than root
             if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
-            // If right child is larger than largest so far 
+            // If right child is larger than largest so far
             if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
-            // If largest is not root 
+            // If largest is not root
             if (largest != i) {
                 Swap(array, i, largest);
 
-                // Recursively heapify the affected sub-tree 
+                // Recursively heapify the affected sub-tree
                 array = Heapify(array, n, largest);
             }
             return array;
@@ -2512,42 +2512,42 @@ namespace SortingAlgorithms {
         public static ulong[] HeapSort(ulong[] array) {
             int n = array.Length;
 
-            // Build heap (rearrange array) 
+            // Build heap (rearrange array)
             for (int i = n / 2 - 1; i >= 0; i--)
                 Heapify(array, n, i);
 
             for (int i = n - 1; i >= 0; i--) {
                 Swap(array, 0, i);
 
-                // call max heapify on the reduced heap 
+                // call max heapify on the reduced heap
                 array = Heapify(array, i, 0);
             }
             return array;
         }
 
         public static ulong[] Heapify(ulong[] array, int n, int i) {
-            int largest = i; // Initialize largest as root 
-            int left = 2 * i + 1; // left = 2*i + 1 
-            int right = 2 * i + 2; // right = 2*i + 2 
+            int largest = i; // Initialize largest as root
+            int left = 2 * i + 1; // left = 2*i + 1
+            int right = 2 * i + 2; // right = 2*i + 2
 
-            // If left child is larger than root 
+            // If left child is larger than root
             if (left < n && array[left].CompareTo(array[largest]) > 0)
                 largest = left;
 
-            // If right child is larger than largest so far 
+            // If right child is larger than largest so far
             if (right < n && array[right].CompareTo(array[largest]) > 0)
                 largest = right;
 
-            // If largest is not root 
+            // If largest is not root
             if (largest != i) {
                 Swap(array, i, largest);
 
-                // Recursively heapify the affected sub-tree 
+                // Recursively heapify the affected sub-tree
                 array = Heapify(array, n, largest);
             }
             return array;
         }
 
-       
+
     }
 }
