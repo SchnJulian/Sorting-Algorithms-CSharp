@@ -5,7 +5,7 @@ Implementation of sorting algorithms in c# supporting every numeric data type. Y
 * [How to use](#use)
 * [Use as library](#library)
 * [Algorithms](#algorithms)
-* [Datatypes](datatype)
+* [Datatypes](#Supported-data-types)
 
 ## Algorithms <a name="algorithms"></a>
 
