@@ -30,7 +30,7 @@ Every function is overloaded for very data type, thus you don't have to worry ab
 
 ## How to use
 Just add the Sort.cs file to your project folder and use the implemented algorithms via Sort.XX
-![](tutorial2.gif)
+![](Tutorial/tutorial2.gif)
 
 ## How to use as library
 ![](Tutorial1.png)
