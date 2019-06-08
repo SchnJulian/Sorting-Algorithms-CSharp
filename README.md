@@ -1,7 +1,13 @@
 # Sorting-Algorithms-CSharp
 Implementation of sorting algorithms in c# supporting every numeric data type. You can either include the source-code in your own project, or import the .dll file as reference.
 
-## Algorithms
+## Content
+* [How to use](#use)
+* [Use as library](#library)
+* [Algorithms](#algorithms)
+* [Datatypes](datatype)
+
+## Algorithms <a name="algorithms"></a>
 
 * MergeSort
 * IntroSort
@@ -10,7 +16,7 @@ Implementation of sorting algorithms in c# supporting every numeric data type. Y
 * BubbleSort
 * SelectionSort
 
-## Supported data types
+## Supported data types <a name="datatype"></a>
 
 * sbyte
 * byte
@@ -28,14 +34,41 @@ Every algorithm takes the unsorted array as parameter and returns the sorted arr
 Every function is overloaded for very data type, thus you don't have to worry about different names when calling the functions with arrays of different types.
 
 
-## How to use
+## How to use <a name="use"></a>
 Just add the Sort.cs file to your project folder and use the implemented algorithms via Sort.XX
 ![](Tutorial/tutorial2.gif)
 
-## How to use as library
+## How to use as library <a name="library"></a>
 ![](Tutorial/Tutorial1.png)
 Add the .dll file as reference to your project
 ![](Tutorial/Tutorial3.png)
 Select ".NET-Assembly" and search your download folder for the provided .dll file.
 ![](Tutorial/Tutorial2.png)
 Select the file and you're ready to go!
+
+
+### Built With
+* [Visual Studio](https://visualstudio.microsoft.com)
+* [Atom](https://atom.io/)
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- LICENSE -->
+## License
+
+Distributed under the GNU LGPLv3 License. See `LICENSE` for more information.
+
+<!-- CONTACT -->
+### Contact
+
+* Julian Schnabel - julianschnabel@outlook.com
+* Project Link: [https://github.com/SchnJulian/Sorting-Algorithms-CSharp](https://github.com/SchnJulian/Sorting-Algorithms-CSharp)
