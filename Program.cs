@@ -1,12 +1,26 @@
 ﻿using System;
+using SortingAlgorithms;
 
 namespace SortingAlgorithms {
     class MainClass {
         public static void Main() {
-            Console.WriteLine("How many elements do you want to sort for the benchmark?");
-            int t = Convert.ToInt32(Console.ReadLine());
-            Benchmark.benchmark(t);
-        }
-    }
+			var example = new int[] { 17, -20, 100, 33, 200, 1, 0 };
+
+			// Print unsorted array
+			foreach (var item in example) {
+				Console.Write(item + " ");
+			}
+			Console.WriteLine();
+
+			// Sort the array
+			example = Sort.HeapSort(example);
+
+			// Print sorted array
+			foreach (var item in example) {
+				Console.Write(item + " ");
+			}
+			Console.WriteLine();
+		}
+	}
 }
 
