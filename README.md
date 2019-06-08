@@ -22,17 +22,17 @@ Implementation of sorting algorithms in c# supporting every numeric data type. Y
 
 ## Supported data types <a name="datatype"></a>
 
-* sbyte
-* byte
-* short
-* ushort
-* int
-* uint
-* long
-* ulong
-* double
-* float
-* decimal
+* `sbyte`
+* `byte`
+* `short`
+* `ushort`
+* `int`
+* `uint`
+* `long`
+* `ulong`
+* `double`
+* `float`
+* `decimal`
 
 Every algorithm takes the unsorted array as parameter and returns the sorted array.
 Every function is overloaded for very data type, thus you don't have to worry about different names when calling the functions with arrays of different types.
