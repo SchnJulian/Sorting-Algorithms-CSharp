@@ -1,10 +1,8 @@
 ﻿using System;
-
 using System.Collections.Generic;
 
 namespace GenericSort {
     public static class GenericSort {
-
 
         public static List<T> MergeSort<T>(List<T> A) where T : IComparable {
             //  Exit condition for recursion
