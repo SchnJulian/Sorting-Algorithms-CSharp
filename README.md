@@ -56,7 +56,7 @@ Select the file and you're ready to go!
 ## Time complexity
 The time an algorithm takes to sort a certain array depends on its length. E.g. for short arrays selectionsort might be the best solution, whereas long arrays should always be sorted by quicksort, introsort, etc. (O(n*log(n))).
 
-To find out, which algorithms is the fastest for you task, run the benchmark from the `benchmark.cs` file and specify the length of you array.
+To find out, which algorithms is the fastest for your task, run the benchmark from the `benchmark.cs` file and specify the length of your array.
 
 ## Benchmarks
 ### 20-element array
