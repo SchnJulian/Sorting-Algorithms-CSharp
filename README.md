@@ -23,17 +23,19 @@ Implementation of sorting algorithms in c# supporting every numeric data type. Y
 
 ## Supported data types <a name="datatype"></a>
 
-* `sbyte`
+* `sbyte` *
 * `byte`
 * `short`
-* `ushort`
+* `ushort` *
 * `int`
-* `uint`
+* `uint` *
 * `long`
-* `ulong`
+* `ulong` *
 * `double`
 * `float`
-* `decimal`
+* `decimal` *
+
+*: C#-Only
 
 Every algorithm takes the unsorted array as parameter and returns the sorted array.
 Every function is overloaded for very data type, thus you don't have to worry about different names when calling the functions with arrays of different types.
@@ -43,7 +45,7 @@ Every function is overloaded for very data type, thus you don't have to worry ab
 Just add the Sort.cs file to your project folder and use the implemented algorithms via Sort.XX
 ![](Tutorial/tutorial2.gif)
 
-## How to use as library <a name="library"></a>
+## How to use as library (C#)<a name="library"></a>
 ![](Tutorial/Tutorial1.png)
 Add the .dll file as reference to your project
 ![](Tutorial/Tutorial3.png)
